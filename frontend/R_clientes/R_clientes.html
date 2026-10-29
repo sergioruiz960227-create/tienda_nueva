@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Registrar Cliente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="R_clientes.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#" class="menu-activo">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Registrar Cliente</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETA FORMULARIO CENTRAL -->
+            <section class="formulario-container">
+                <div class="card-formulario">
+                    <div class="formulario-header">
+                        <h3>Información del Cliente</h3>
+                        <div class="icono-formulario">👤</div>
+                    </div>
+
+                    <!-- CAMPOS DEL FORMULARIO -->
+                    <div class="grid-campos">
+                        <div class="campo">
+                            <label>Código del Cliente</label>
+                            <input type="text" value="CL007" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Nombre y Apellido</label>
+                            <input type="text" placeholder="Ingrese nombre y apellido">
+                        </div>
+                        <div class="campo">
+                            <label>Teléfono</label>
+                            <input type="text" placeholder="Ingrese el teléfono">
+                        </div>
+                        <div class="campo">
+                            <label>Correo Electrónico</label>
+                            <input type="email" placeholder="Ingrese el correo electrónico">
+                        </div>
+                        <div class="campo">
+                            <label>Dirección</label>
+                            <input type="text" placeholder="Ingrese la dirección">
+                        </div>
+                        <div class="campo">
+                            <label>Ciudad</label>
+                            <input type="text" placeholder="Ingrese la ciudad">
+                        </div>
+                        <div class="campo">
+                            <label>Tipo de Cliente</label>
+                            <select id="selectTipoCliente">
+                                <option value="" disabled selected>Seleccionar Tipo</option>
+                                <option value="ocasional">Ocasional</option>
+                                <option value="frecuente">Frecuente</option>
+                                <option value="mayorista">Mayorista</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Estado</label>
+                            <select id="selectEstadoCliente">
+                                <option value="activo" selected>Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        <div class="campo campo-full">
+                            <label>Observaciones</label>
+                            <textarea placeholder="Ingrese observaciones del cliente..." rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ACCIONES FINALES -->
+                    <div class="botones-acciones">
+                        <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                        <button class="btn-guardar" id="btnGuardarCliente">Guardar Cliente</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="R_clientes.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+:root {
+    --verde-principal: #14B8A6;
+    --verde-hover: #0D9488;
+
+    --azul-oscuro: #061633;
+
+    --fondo-gris: #F8FAFC;
+    --borde: #E2E8F0;
+
+    --texto-oscuro: #111827;
+    --texto-secundario: #6B7280;
+
+    --error-fondo: #FEF2F2;
+    --error-borde: #FECACA;
+    --error-texto: #B91C1C;
+    --error-icono: #DC2626;
+
+    --radius-inputs: 10px;
+    --radius-card: 16px;
+}
+
+
+/* ==============================
+   REINICIO GENERAL
+   ============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ==============================
+   CUERPO
+   ============================== */
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Poppins', sans-serif;
+
+    background: var(--fondo-gris);
+
+    color: var(--texto-oscuro);
+}
+
+
+/* ==============================
+   CONTENEDOR DEL LOGIN
+   ============================== */
+
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+/* ==============================
+   TARJETA DE LOGIN
+   ============================== */
+
+.login-card {
+    width: 380px;
+    max-width: 100%;
+
+    padding: 40px;
+
+    background: #FFFFFF;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radius-card);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==============================
+   TITULO
+   ============================== */
+
+.login-card h1 {
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    color: var(--azul-oscuro);
+
+    font-size: 28px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* ==============================
+   SUBTITULO
+   ============================== */
+
+.subtitulo {
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    color: var(--texto-secundario);
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   MENSAJE DE ERROR
+   ============================== */
+
+.mensaje-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 22px;
+    padding: 14px;
+
+    background: var(--error-fondo);
+
+    border: 1px solid var(--error-borde);
+    border-radius: var(--radius-inputs);
+
+    color: var(--error-texto);
+}
+.mensaje-error[hidden] {
+    display: none;
+}
+
+
+/* Icono del error */
+
+.icono-error {
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: var(--error-icono);
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* Titulo del mensaje */
+
+.mensaje-error strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Texto del mensaje */
+
+.mensaje-error p {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   CAMPOS
+   ============================== */
+
+.campo {
+    margin-bottom: 20px;
+}
+
+
+/* ==============================
+   ETIQUETAS
+   ============================== */
+
+label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--texto-oscuro);
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ==============================
+   INPUTS
+   ============================== */
+
+input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid var(--borde);
+    border-radius: var(--radius-inputs);
+
+    background: #FFFFFF;
+
+    color: var(--texto-oscuro);
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Estado focus */
+
+input:focus {
+    border-color: var(--verde-principal);
+
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+
+/* Placeholder */
+
+input::placeholder {
+    color: #9CA3AF;
+}
+
+
+/* ==============================
+   BOTON
+   ============================== */
+
+button {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: var(--radius-inputs);
+
+    background: var(--verde-principal);
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
+}
+
+
+/* Hover */
+
+button:hover {
+    background: var(--verde-hover);
+}
+
+
+/* Click */
+
+button:active {
+    transform: translateY(1px);
+}
+
+
+/* ==============================
+   ENLACES
+   ============================== */
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.links a {
+    color: var(--verde-principal);
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+
+.links a:hover {
+    color: var(--verde-hover);
+
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 480px) {
+
+    .login-card {
+        padding: 30px 25px;
+    }
+
+    .login-card h1 {
+        font-size: 24px;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+}
+

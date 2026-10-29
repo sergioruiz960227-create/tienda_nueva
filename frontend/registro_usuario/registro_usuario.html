@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Registro de Usuario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="registro_usuario.css">
+</head>
+<body>
+
+    <main class="registro-container">
+        <section class="registro-card">
+
+            <div class="registro-header">
+                <div>
+                    <h1>Registro de Usuario</h1>
+                    <p class="subtitulo">Complete la información del usuario</p>
+                </div>
+                <div class="icono-usuario">👤</div>
+            </div>
+
+            <form id="registroForm">
+                <div class="grid-campos">
+                    <div class="campo">
+                        <label for="nombres">Nombres</label>
+                        <input type="text" id="nombres" name="nombres" placeholder="Ingrese sus nombres">
+                    </div>
+                    <div class="campo">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Ingrese sus apellidos">
+                    </div>
+                    <div class="campo">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" id="cedula" name="cedula" placeholder="Ingrese su cédula">
+                    </div>
+                    <div class="campo">
+                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+                    </div>
+                    <div class="campo">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" placeholder="Ingrese correo">
+                    </div>
+                    <div class="campo">
+                        <label for="usuarioNuevo">Usuario</label>
+                        <input type="text" id="usuarioNuevo" name="usuarioNuevo" placeholder="Ingrese usuario">
+                    </div>
+                    <div class="campo">
+                        <label for="passwordNuevo">Contraseña</label>
+                        <input type="password" id="passwordNuevo" name="passwordNuevo" placeholder="Ingrese contraseña">
+                    </div>
+                    <div class="campo">
+                        <label for="confirmarPassword">Confirme contraseña</label>
+                        <input type="password" id="confirmarPassword" name="confirmarPassword" placeholder="Confirme contraseña">
+                    </div>
+                    <div class="campo campo-full">
+                        <label for="rol">Rol</label>
+                        <select id="rol" name="rol">
+                            <option value="" disabled selected>Selecciona rol</option>
+                            <option value="administrador">Administrador</option>
+                            <option value="vendedor">Vendedor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit">Registrar usuario</button>
+            </form>
+
+            <div class="links">
+                <a href="../index/index.html" id="linkVolver">Volver a Iniciar Sesión</a>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="registro_usuario.js"></script>
+</body>
+</html>

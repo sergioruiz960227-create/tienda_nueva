@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Inventario</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="inventario.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#" class="menu-activo">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Gestión de Inventario</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETAS ESTADÍSTICAS CORREGIDAS (DISTRIBUIDAS EN DOS COLUMNAS) -->
+            <section class="cards">
+                <div class="card">
+                    <div>
+                        <p>Total de productos</p>
+                        <h2>245</h2>
+                    </div>
+                    <div class="icono-card">📦</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Stock bajo</p>
+                        <h2>12</h2>
+                    </div>
+                    <div class="icono-card">⚠️</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Agotados</p>
+                        <h2>3</h2>
+                    </div>
+                    <div class="icono-card">❌</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Categorías</p>
+                        <h2>8</h2>
+                    </div>
+                    <div class="icono-card">🗂️</div>
+                </div>
+            </section>
+
+                        <!-- BARRA DE ACCIONES SUPERIOR -->
+            <section class="top-bar">
+                <div class="buscador-container">
+                    <input type="text" id="buscarProducto" placeholder="Buscar producto...">
+                </div>
+                <button class="btn-registrar" id="btnRegistrarProducto">+ Registrar producto</button>
+            </section>
+
+            <!-- TABLA DE PRODUCTOS -->
+            <section class="tabla-container">
+                <h3>Listado de Productos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Stock</th>
+                            <th>Precio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P001</td>
+                            <td>Empanada</td>
+                            <td>Comidas</td>
+                            <td>14</td>
+                            <td>$3.000</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P002</td>
+                            <td>Coca-Cola 350ml</td>
+                            <td>Bebidas</td>
+                            <td>28</td>
+                            <td>$2.500</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P003</td>
+                            <td>Cerveza TKT Grande</td>
+                            <td>Licores</td>
+                            <td>15</td>
+                            <td>$3.500</td>
+                            <td><span class="badge stock-bajo">Stock Bajo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P004</td>
+                            <td>Arroz Diana 500g</td>
+                            <td>Abarrotes</td>
+                            <td>32</td>
+                            <td>$2.800</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P005</td>
+                            <td>Crema Dental Colgate</td>
+                            <td>Aseo</td>
+                            <td>0</td>
+                            <td>$3.000</td>
+                            <td><span class="badge agotado">Agotado</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>P006</td>
+                            <td>Jabón Rey</td>
+                            <td>Aseo</td>
+                            <td>18</td>
+                            <td>$1.900</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar">📝</button>
+                                <button class="btn-accion btn-eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- PAGINACIÓN -->
+                <div class="paginacion">
+                    <button class="btn-pag">&larr; Anterior</button>
+                    <span>Página 1 de 5</span>
+                    <button class="btn-pag">Siguiente &rarr;</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="inventario.js"></script>
+</body>
+</html>

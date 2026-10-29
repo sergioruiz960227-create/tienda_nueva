@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#" class="menu-activo">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Dashboard Principal</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <section class="cards">
+                <div class="card">
+                    <div>
+                        <p>Ventas Hoy</p>
+                        <h2>$850.000</h2>
+                    </div>
+                    <div class="icono-card">💲</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Productos</p>
+                        <h2>125</h2>
+                    </div>
+                    <div class="icono-card">📦</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Clientes</p>
+                        <h2>42</h2>
+                    </div>
+                    <div class="icono-card">👤</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Stock Bajo</p>
+                        <h2>6</h2>
+                    </div>
+                    <div class="icono-card">⚠️</div>
+                </div>
+            </section>
+
+            <section class="tabla-container">
+                <h3>Ventas Recientes</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arroz Diana</td>
+                            <td>$2.500</td>
+                            <td>10/04/2026</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                        </tr>
+                        <tr>
+                            <td>Aceite Premier</td>
+                            <td>$12.000</td>
+                            <td>10/04/2026</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                        </tr>
+                        <tr>
+                            <td>Leche Alquería</td>
+                            <td>$4.200</td>
+                            <td>09/04/2026</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                        </tr>
+                        <tr>
+                            <td>Papel Familia</td>
+                            <td>$8.900</td>
+                            <td>09/04/2026</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                        </tr>
+                        <tr>
+                            <td>Café Sello Rojo</td>
+                            <td>$15.300</td>
+                            <td>08/04/2026</td>
+                            <td><span class="badge pendiente">Pendiente</span></td>
+                        </tr>
+                        <tr>
+                            <td>Detergente Ariel</td>
+                            <td>$22.700</td>
+                            <td>08/04/2026</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

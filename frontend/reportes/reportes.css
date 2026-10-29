@@ -1,0 +1,464 @@
+:root {
+    --verde-principal: #14B8A6;
+    --azul-sidebar: #0F172A;
+    --fondo-gris: #F8FAFC;
+    --borde: #E2E8F0;
+    --texto-oscuro: #111827;
+    --texto-secundario: #6B7280;
+    --radius-inputs: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: var(--fondo-gris);
+    color: var(--texto-oscuro);
+}
+
+.container{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENÚ LATERAL */
+.sidebar{
+    width: 220px;
+    background: #061633;
+    padding: 25px;
+    color: white;
+}
+
+.sidebar h2{
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.sidebar nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav a{
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.sidebar nav a.menu-activo{
+    color: #19C6B4 !important;
+    font-weight: 600;
+}
+
+.sidebar nav a:hover{
+    color: #19C6B4;
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content{
+    flex: 1;
+}
+
+.header{
+    background: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde);
+}
+
+.header h1{
+    color: #061633;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.usuario{
+    text-align: right;
+}
+
+.usuario span{
+    display: block;
+    font-weight: 600;
+}
+
+.usuario a{
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+/* FILTROS SUPERIORES */
+.barra-filtros {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 30px 30px 10px 30px;
+}
+
+.contenedor-fechas {
+    display: flex;
+    gap: 20px;
+}
+
+.campo-fecha {
+    position: relative;
+    width: 160px;
+}
+
+.campo-fecha label {
+    display: block;
+    font-size: 12px;
+    color: var(--texto-secundario);
+    margin-bottom: 5px;
+}
+
+.input-fecha {
+    width: 100%;
+    padding: 8px 30px 8px 12px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    background: white;
+    color: var(--texto-oscuro);
+}
+
+.icono-calendario {
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.btn-generar {
+    background: var(--verde-principal);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 340px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* TARJETAS EN DOS COLUMNAS */
+.cards{
+    display: grid;
+    grid-template-columns: repeat(2, 280px);
+    gap: 25px;
+    padding: 10px 30px 20px 30px;
+}
+
+.card{
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border: 1px solid var(--borde);
+}
+
+.card p{
+    color: var(--texto-secundario);
+    font-size: 13px;
+}
+
+.card h2{
+    color: #061633;
+    margin-top: 10px;
+    font-size: 32px;
+}
+
+.icono-card{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #DDF5F1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* SECCIÓN GRÁFICAS */
+.contenedor-graficas {
+    display: flex;
+    gap: 25px;
+    padding: 0 30px 20px 30px;
+}
+
+.panel-grafica {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.04);
+}
+
+.panel-grafica h3 {
+    font-size: 15px;
+    color: #061633;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* DISEÑO GRÁFICA DE BARRAS VERTICALES */
+.grafica-barras {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 160px;
+    padding-top: 10px;
+}
+
+.barra-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    width: 35px;
+}
+
+.barra {
+    width: 100%;
+    background: var(--verde-principal);
+    border-radius: 4px 4px 0 0;
+    transition: background 0.3s;
+}
+
+.barra:hover {
+    background: #0D9488;
+}
+
+.barra-container span {
+    font-size: 11px;
+    color: var(--texto-secundario);
+    margin-top: 8px;
+}
+
+/* DISEÑO GRÁFICA DE LÍNEAS DE PROGRESO HORIZONTALES */
+.grafica-lineas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.linea-progreso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.linea-progreso p {
+    width: 80px;
+    color: var(--texto-oscuro);
+}
+
+.barra-progreso {
+    flex: 1;
+    height: 12px;
+    background: #F1F5F9;
+    border-radius: 6px;
+    margin: 0 12px;
+    overflow: hidden;
+}
+
+.progreso-interno {
+    height: 100%;
+    background: var(--verde-principal);
+    border-radius: 6px;
+}
+
+.linea-progreso span {
+    width: 30px;
+    text-align: right;
+    color: var(--texto-secundario);
+    font-weight: 500;
+}
+
+/* TABLA INFERIOR */
+.tabla-container{
+    margin: 0 30px 30px 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    border: 1px solid var(--borde);
+}
+
+.tabla-container h3{
+    color: #061633;
+    margin-bottom: 20px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead{
+    background: #F8FAFC;
+}
+
+th{
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+    color: var(--texto-secundario);
+    font-weight: 500;
+    border-bottom: 2px solid var(--borde);
+}
+
+td{
+    padding: 12px;
+    border-bottom: 1px solid var(--borde);
+    font-size: 13px;
+}
+
+/* ======================================================
+   DISEÑO RESPONSIVE
+====================================================== */
+
+.header-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #061633;
+    cursor: pointer;
+}
+
+.overlay-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+
+.overlay-menu.activo {
+    display: block;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* MÓVIL */
+@media (max-width: 768px) {
+    .btn-menu {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.activo {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr !important;
+    }
+
+    .barra-superior, .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .grid-campos {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tabla-container, .detalle-productos {
+        overflow-x: auto;
+    }
+
+    .tabla-container table, .detalle-productos table {
+        min-width: 600px;
+    }
+
+    .factura-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    /* Forzar a que las fechas y el botón se apilen verticalmente */
+    .barra-filtros {
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    /* Asegurar que el contenedor de las dos fechas ocupe el 100% */
+    .contenedor-fechas {
+        width: 100%;
+    }
+
+    /* Hacer que cada campo de fecha crezca equitativamente al 50% de la pantalla */
+    .campo-fecha {
+        flex: 1;
+        width: auto;
+    }
+
+    /* Hacer que el botón baje y se alargue al ancho completo */
+    .btn-generar {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-formulario, .card-factura {
+        padding: 18px !important;
+    }
+
+    .formulario-container {
+        padding: 15px !important;
+    }
+}

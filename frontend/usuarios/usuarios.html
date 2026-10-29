@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Gestión de Usuarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="usuarios.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#" class="menu-activo">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Gestión de Usuarios</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETAS ESTADÍSTICAS EN DOS COLUMNAS -->
+            <section class="cards">
+                <div class="card">
+                    <div>
+                        <p>Usuarios Totales</p>
+                        <h2>3</h2>
+                    </div>
+                    <div class="icono-card">👤</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Administradores</p>
+                        <h2>1</h2>
+                    </div>
+                    <div class="icono-card">🛡️</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Vendedores</p>
+                        <h2>2</h2>
+                    </div>
+                    <div class="icono-card">💼</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Usuarios Inactivos</p>
+                        <h2>0</h2>
+                    </div>
+                    <div class="icono-card">👥</div>
+                </div>
+            </section>
+
+                        <!-- BARRA SUPERIOR DE ACCIONES -->
+            <section class="barra-superior">
+                <div class="buscador-container">
+                    <input type="text" id="buscarUsuario" placeholder="🔍 Buscar Usuario...">
+                </div>
+                <button id="btnRegistrarUsuario" class="btn-registrar-usuario">+ Registrar Usuario</button>
+            </section>
+
+            <!-- TABLA DE LISTADO DE USUARIOS -->
+            <section class="tabla-container">
+                <h3>Listado de Usuarios</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>US001</td>
+                            <td>Deisy Ruiz</td>
+                            <td>3115004677</td>
+                            <td>DeyRuiz</td>
+                            <td>Administrador</td>
+                            <td><span class="badge disponible">Activo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>US002</td>
+                            <td>Flor Sanabria</td>
+                            <td>3228602655</td>
+                            <td>FlorSa</td>
+                            <td>Vendedora</td>
+                            <td><span class="badge disponible">Activo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>US003</td>
+                            <td>Lizeth Nieto</td>
+                            <td>3138333788</td>
+                            <td>LizNie</td>
+                            <td>Vendedora</td>
+                            <td><span class="badge disponible">Activo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>US004</td>
+                            <td>Andrés Vargas</td>
+                            <td>3167712345</td>
+                            <td>AndVar</td>
+                            <td>Vendedor</td>
+                            <td><span class="badge disponible">Activo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>US005</td>
+                            <td>Paula Méndez</td>
+                            <td>3204449988</td>
+                            <td>PauMen</td>
+                            <td>Vendedora</td>
+                            <td><span class="badge agotado">Inactivo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>US006</td>
+                            <td>Camilo Ortiz</td>
+                            <td>3151239876</td>
+                            <td>CamOrt</td>
+                            <td>Administrador</td>
+                            <td><span class="badge disponible">Activo</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-editar" title="Editar Usuario">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Usuario">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- INFORMACIÓN DE REGISTROS -->
+                <div class="paginacion">
+                    <span>Mostrando 3 de 3 Usuarios</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="usuarios.js"></script>
+</body>
+</html>

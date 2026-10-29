@@ -1,0 +1,376 @@
+:root {
+    --verde-principal: #14B8A6;
+    --azul-sidebar: #0F172A;
+    --fondo-gris: #F8FAFC;
+    --borde: #E2E8F0;
+    --texto-oscuro: #111827;
+    --texto-secundario: #6B7280;
+    --radius-inputs: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: var(--fondo-gris);
+    color: var(--texto-oscuro);
+}
+
+.container{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* MENÚ LATERAL */
+.sidebar{
+    width: 220px;
+    background: #061633;
+    padding: 25px;
+    color: white;
+}
+
+.sidebar h2{
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.sidebar nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar nav a{
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.sidebar nav a.menu-activo{
+    color: #19C6B4 !important;
+    font-weight: 600;
+}
+
+.sidebar nav a:hover{
+    color: #19C6B4;
+}
+
+/* CONTENIDO PRINCIPAL */
+.main-content{
+    flex: 1;
+}
+
+.header{
+    background: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde);
+}
+
+.header h1{
+    color: #061633;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.usuario{
+    text-align: right;
+}
+
+.usuario span{
+    display: block;
+    font-weight: 600;
+}
+
+.usuario a{
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+}
+
+/* CONTENEDOR DE LA FACTURA */
+.formulario-container {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-factura {
+    background: white;
+    width: 100%;
+    max-width: 750px;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid var(--borde);
+}
+
+.factura-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.factura-header h3 {
+    color: #061633;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.icono-factura {
+    font-size: 22px;
+}
+
+/* FORMULARIO GRID */
+.grid-campos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.campo label {
+    display: block;
+    font-size: 12px;
+    color: var(--texto-secundario);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.campo input, .campo select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    outline: none;
+    background: white;
+}
+
+.campo select {
+    cursor: pointer;
+    color: var(--texto-oscuro);
+}
+
+.campo .input-desactivado {
+    background: #F8FAFC;
+    color: var(--texto-secundario);
+}
+
+/* TABLA INTERNA */
+.detalle-productos h4 {
+    font-size: 14px;
+    color: #061633;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.detalle-productos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.detalle-productos th {
+    text-align: left;
+    padding: 10px;
+    font-size: 12px;
+    color: var(--texto-secundario);
+    font-weight: 500;
+    border-bottom: 1px solid var(--borde);
+}
+
+.detalle-productos td {
+    padding: 12px 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.btn-eliminar-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* FOOTER FACTURA y TOTALES */
+.factura-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.btn-agregar-prod {
+    background: var(--verde-principal);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.bloque-totales {
+    width: 180px;
+    text-align: right;
+}
+
+.fila-tot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--texto-secundario);
+    margin-bottom: 4px;
+}
+
+.total-final {
+    font-size: 16px;
+    font-weight: 700;
+    color: #061633;
+    margin-top: 6px;
+    border-top: 1px solid var(--borde);
+    padding-top: 6px;
+}
+
+/* PIE DE BOTONES DE ACCIÓN */
+.botones-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-cancelar {
+    background: #F1F5F9;
+    border: 1px solid var(--borde);
+    padding: 10px 24px;
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--texto-secundario);
+}
+
+.btn-registrar-venta {
+    background: var(--verde-principal);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* ======================================================
+   DISEÑO RESPONSIVE
+====================================================== */
+
+.header-izquierda {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #061633;
+    cursor: pointer;
+}
+
+.overlay-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 999;
+}
+
+.overlay-menu.activo {
+    display: block;
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* MÓVIL */
+@media (max-width: 768px) {
+    .btn-menu {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.activo {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr !important;
+    }
+
+    .barra-superior, .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .grid-campos {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tabla-container, .detalle-productos {
+        overflow-x: auto;
+    }
+
+    .tabla-container table, .detalle-productos table {
+        min-width: 600px;
+    }
+
+    .factura-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-formulario, .card-factura {
+        padding: 18px !important;
+    }
+
+    .formulario-container {
+        padding: 15px !important;
+    }
+}

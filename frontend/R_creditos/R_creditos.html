@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Registrar Crédito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="R_creditos.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#" class="menu-activo">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Registrar Crédito</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETA FORMULARIO CENTRAL -->
+            <section class="formulario-container">
+                <div class="card-formulario">
+                    <div class="formulario-header">
+                        <h3>Información del Crédito</h3>
+                        <div class="icono-formulario">💳</div>
+                    </div>
+
+                    <!-- CAMPOS DEL FORMULARIO -->
+                    <div class="grid-campos">
+                        <div class="campo">
+                            <label>Código del Crédito</label>
+                            <input type="text" value="CR007" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Fecha</label>
+                            <input type="text" value="18/08/2026" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Cliente</label>
+                            <select id="selectCliente">
+                                <option value="" disabled selected>Seleccionar Cliente</option>
+                                <option value="1">Ana Rodríguez</option>
+                                <option value="2">Juan Pérez</option>
+                                <option value="3">Laura Torres</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Estado</label>
+                            <select id="selectEstadoCredito">
+                                <option value="" disabled selected>Seleccionar Estado</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="pagado">Pagado</option>
+                                <option value="mora">En Mora</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Valor del Crédito</label>
+                            <input type="text" placeholder="$0">
+                        </div>
+                        <div class="campo">
+                            <label>Saldo Pendiente</label>
+                            <input type="text" placeholder="$0">
+                        </div>
+                        <div class="campo">
+                            <label>Fecha Límite</label>
+                            <input type="date">
+                        </div>
+                        <div class="campo">
+                            <label>Método de Pago</label>
+                            <select id="selectMetodoPago">
+                                <option value="" disabled selected>Seleccionar Método</option>
+                                <option value="efectivo">Efectivo</option>
+                                <option value="transferencia">Transferencia</option>
+                                <option value="tarjeta">Tarjeta</option>
+                            </select>
+                        </div>
+                        <div class="campo campo-full">
+                            <label>Observaciones</label>
+                            <textarea placeholder="Ingrese observaciones del crédito..." rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ACCIONES FINALES -->
+                    <div class="botones-acciones">
+                        <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                        <button class="btn-guardar" id="btnGuardarCredito">Guardar Crédito</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="R_creditos.js"></script>
+</body>
+</html>

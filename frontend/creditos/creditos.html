@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Gestión de Créditos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="creditos.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#" class="menu-activo">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Gestión de Créditos</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETAS ESTADÍSTICAS EN DOS COLUMNAS -->
+            <section class="cards">
+                <div class="card">
+                    <div>
+                        <p>Créditos Activos</p>
+                        <h2>27</h2>
+                    </div>
+                    <div class="icono-card">💳</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Pendientes</p>
+                        <h2>7</h2>
+                    </div>
+                    <div class="icono-card">⏱️</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>En Mora</p>
+                        <h2>5</h2>
+                    </div>
+                    <div class="icono-card">⚠️</div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <p>Saldo Pendiente</p>
+                        <h2>$263.800</h2>
+                    </div>
+                    <div class="icono-card">$</div>
+                </div>
+            </section>
+
+                        <!-- BARRA SUPERIOR DE ACCIONES -->
+            <section class="barra-superior">
+                <div class="buscador-container">
+                    <input type="text" id="buscarCredito" placeholder="🔍 Buscar Cliente o Crédito...">
+                </div>
+                <button id="btnNuevoCredito" class="btn-nuevo-credito">+ Nuevo Crédito</button>
+            </section>
+
+            <!-- TABLA DE LISTADO DE CRÉDITOS -->
+            <section class="tabla-container">
+                <h3>Listado de Créditos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Crédito</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Valor</th>
+                            <th>Saldo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CR001</td>
+                            <td>Ana Rodríguez</td>
+                            <td>01/06/2026</td>
+                            <td>$80.000</td>
+                            <td>$20.000</td>
+                            <td><span class="badge pendiente">Pendiente</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CR002</td>
+                            <td>María Gómez</td>
+                            <td>03/06/2026</td>
+                            <td>$50.000</td>
+                            <td>$0</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CR003</td>
+                            <td>Juan Pérez</td>
+                            <td>06/06/2026</td>
+                            <td>$120.000</td>
+                            <td>$35.000</td>
+                            <td><span class="badge mora">En Mora</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CR004</td>
+                            <td>Luis Martínez</td>
+                            <td>15/06/2026</td>
+                            <td>$70.000</td>
+                            <td>$15.000</td>
+                            <td><span class="badge mora">En Mora</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CR005</td>
+                            <td>Carlos Ruiz</td>
+                            <td>28/05/2026</td>
+                            <td>$90.000</td>
+                            <td>$40.000</td>
+                            <td><span class="badge pendiente">Pendiente</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CR006</td>
+                            <td>Diana Torres</td>
+                            <td>04/06/2026</td>
+                            <td>$60.000</td>
+                            <td>$0</td>
+                            <td><span class="badge pagado">Pagado</span></td>
+                            <td class="acciones-celda">
+                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
+                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
+                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- PAGINACIÓN -->
+                <div class="paginacion">
+                    <button class="btn-pag">&larr; Anterior</button>
+                    <span>Página 1 de 5</span>
+                    <button class="btn-pag">Siguiente &rarr;</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="creditos.js"></script>
+</body>
+</html>

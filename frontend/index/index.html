@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tienda Nueva - Inicio de Sesión</title>
+
+    <!-- Fuente Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <h1>TIENDA NUEVA</h1>
+
+            <p class="subtitulo">
+                Sistema de Gestión Comercial
+            </p>
+
+            <!-- Mensaje de error -->
+            <div
+                id="mensajeError"
+                class="mensaje-error"
+                role="alert"
+                hidden
+            >
+                <span class="icono-error" aria-hidden="true">!</span>
+
+                <div>
+                    <strong>Error de inicio de sesión</strong>
+                    <p id="textoError">
+                        El usuario o la contraseña son incorrectos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Formulario de inicio de sesión -->
+            <form id="loginForm">
+
+                <div class="campo">
+                    <label for="usuario">Usuario</label>
+
+                    <input
+                        type="text"
+                        id="usuario"
+                        name="usuario"
+                        placeholder="Ingrese su usuario"
+                        autocomplete="username"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Ingrese su contraseña"
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <button type="submit">
+                    Iniciar Sesión
+                </button>
+
+            </form>
+
+            <!-- Enlaces auxiliares -->
+            <div class="links">
+
+                <a href="../registro_usuario/registro_usuario.html">
+                    Registrar Usuario
+                </a>
+
+                <a href="#" class="enlace-construccion">
+                    ¿Olvidó su contraseña?
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

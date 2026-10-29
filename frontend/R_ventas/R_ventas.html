@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Registrar Venta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="R_ventas.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#" class="menu-activo">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Registrar Venta</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETA FORMULARIO CENTRAL -->
+            <section class="formulario-container">
+                <div class="card-factura">
+                    <div class="factura-header">
+                        <h3>Información de Venta</h3>
+                        <div class="icono-factura">📄</div>
+                    </div>
+
+                    <!-- CAMPOS SUPERIORES -->
+                    <div class="grid-campos">
+                        <div class="campo">
+                            <label>Número de Factura</label>
+                            <input type="text" value="FV001" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Fecha</label>
+                            <input type="text" value="18/06/2026" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Cliente</label>
+                            <select id="selectCliente">
+                                <option value="" disabled selected>Seleccionar Cliente</option>
+                                <option value="1">Ana Rodríguez</option>
+                                <option value="2">María Gómez</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Método de pago</label>
+                            <select id="selectMetodo">
+                                <option value="" disabled selected>Seleccionar Método</option>
+                                <option value="efectivo">Efectivo</option>
+                                <option value="credito">Crédito</option>
+                                <option value="transferencia">Transferencia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- TABLA DETALLE DE PRODUCTOS -->
+                    <div class="detalle-productos">
+                        <h4>Detalle de Productos</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Subtotal</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Coca-Cola 350ml</td>
+                                    <td>2</td>
+                                    <td>$2.500</td>
+                                    <td>$5.000</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Empanada</td>
+                                    <td>2</td>
+                                    <td>$3.000</td>
+                                    <td>$6.000</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Cigarrillo</td>
+                                    <td>1</td>
+                                    <td>$1.000</td>
+                                    <td>$1.000</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Leche Alquería</td>
+                                    <td>1</td>
+                                    <td>$4.200</td>
+                                    <td>$4.200</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Papel Higiénico Familia</td>
+                                    <td>2</td>
+                                    <td>$2.500</td>
+                                    <td>$5.000</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Café Sello Rojo</td>
+                                    <td>1</td>
+                                    <td>$6.500</td>
+                                    <td>$6.500</td>
+                                    <td><button class="btn-eliminar-item">🗑️</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- BOTÓN AGREGAR Y TOTALES -->
+                    <div class="factura-footer">
+                        <button class="btn-agregar-prod" id="btnAgregarProducto">+ Agregar producto</button>
+                        
+                        <div class="bloque-totales">
+                            <div class="fila-tot"><span>Subtotal:</span> <span>$27.700</span></div>
+                            <div class="fila-tot"><span>IVA (19%):</span> <span>$5.263</span></div>
+                            <div class="fila-tot total-final"><span>Total:</span> <span>$32.963</span></div>
+                        </div>
+                    </div>
+
+                    <!-- ACCIONES FINALES -->
+                    <div class="botones-acciones">
+                        <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                        <button class="btn-registrar-venta" id="btnRegistrarVenta">Registrar Venta</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="R_ventas.js"></script>
+</body>
+</html>

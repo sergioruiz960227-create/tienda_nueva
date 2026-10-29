@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Configuración</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="configuracion.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL INTERCONECTADO -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#" class="menu-activo">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Configuración</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- CONTENEDOR DE PANELES EN DOS COLUMNAS -->
+            <section class="cards-configuracion">
+                
+                <!-- Panel 1: Información de la tienda -->
+                <div class="card-config">
+                    <div class="info-bloque">
+                        <h3>Información de la tienda</h3>
+                        <p><strong>Nombre:</strong> Tienda Nueva del Libertador</p>
+                        <p><strong>NIT:</strong> 900103400-7</p>
+                        <p><strong>Teléfono:</strong> 3228602655</p>
+                    </div>
+                    <div class="icono-config">🛒</div>
+                </div>
+
+                <!-- Panel 2: Seguridad -->
+                <div class="card-config">
+                    <div class="info-bloque">
+                        <h3>Seguridad</h3>
+                        <p class="enlace-interno" id="linkPassword">Cambiar Contraseña</p>
+                        <p><strong>Último Acceso:</strong> 18/06/2026</p>
+                        <p><strong>Estado:</strong> Protegido</p>
+                    </div>
+                    <div class="icono-config">🔑</div>
+                </div>
+
+                <!-- Panel 3: Preferencias -->
+                <div class="card-config">
+                    <div class="info-bloque">
+                        <h3>Preferencias</h3>
+                        <p><strong>Moneda:</strong> COP</p>
+                        <p><strong>Idioma:</strong> Español</p>
+                        <p><strong>Tema:</strong> Claro</p>
+                    </div>
+                    <div class="icono-config">⚙️</div>
+                </div>
+
+                <!-- Panel 4: Respaldos -->
+                <div class="card-config">
+                    <div class="info-bloque">
+                        <h3>Respaldos</h3>
+                        <p class="enlace-interno" id="linkCopia">Copia de Seguridad</p>
+                        <p><strong>Último Respaldo:</strong> 18/06/2026</p>
+                        <p><strong>Estado:</strong> Actualizado</p>
+                        <p><strong>Frecuencia:</strong> Diario</p>
+                    </div>
+                    <div class="icono-config">💾</div>
+                </div>
+
+            </section>
+
+            <!-- BOTÓN INFERIOR DE ACCIÓN -->
+            <section class="seccion-guardar">
+                <button id="btnGuardarConfiguracion" class="btn-guardar">Guardar configuración</button>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="configuracion.js"></script>
+</body>
+</html>

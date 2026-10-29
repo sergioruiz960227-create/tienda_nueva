@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Reportes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reportes.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="../dashboard/dashboard.html">Dashboard</a>
+                <a href="../inventario/inventario.html">Inventario</a>
+                <a href="../ventas/ventas.html">Ventas</a>
+                <a href="../clientes/clientes.html">Clientes</a>
+                <a href="../creditos/creditos.html">Créditos</a>
+                <a href="#" class="menu-activo">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Reportes</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- FILTROS DE FECHA SUPERIORES INTERACTIVOS -->
+            <section class="barra-filtros">
+                <div class="contenedor-fechas">
+                    <div class="campo-fecha">
+                        <label>Desde</label>
+                        <!-- Tipo cambiado a 'date' y removido el readonly -->
+                        <input type="date" id="fechaDesde" value="2026-06-01" class="input-fecha">
+                    </div>
+                    <div class="campo-fecha">
+                        <label>Hasta</label>
+                        <!-- Tipo cambiado a 'date' y removido el readonly -->
+                        <input type="date" id="fechaHasta" value="2026-06-30" class="input-fecha">
+                    </div>
+                </div>
+                <button id="btnGenerarReporte" class="btn-generar">⚡ Generar Reporte</button>
+            </section>
+
+            <!-- TARJETAS ESTADÍSTICAS (DOS COLUMNAS) -->
+            <section class="cards">
+                <div class="card">
+                    <div>
+                        <p>Ventas Totales</p>
+                        <h2>$8.950.000</h2>
+                    </div>
+                    <div class="icono-card">$</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Productos Vendidos</p>
+                        <h2>3.128</h2>
+                    </div>
+                    <div class="icono-card">📦</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Clientes Atendidos</p>
+                        <h2>1.780</h2>
+                    </div>
+                    <div class="icono-card">👤</div>
+                </div>
+                <div class="card">
+                    <div>
+                        <p>Créditos Activos</p>
+                        <h2>27</h2>
+                    </div>
+                    <div class="icono-card">💳</div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN DE GRÁFICAS SIMULADAS -->
+            <section class="contenedor-graficas">
+                <!-- Gráfica 1: Ventas Mes -->
+                <div class="panel-grafica">
+                    <h3>Ventas Mes</h3>
+                    <div class="grafica-barras">
+                        <div class="barra-container"><div class="barra" style="height: 80%;"></div><span>Ene</span></div>
+                        <div class="barra-container"><div class="barra" style="height: 50%;"></div><span>Feb</span></div>
+                        <div class="barra-container"><div class="barra" style="height: 65%;"></div><span>Mar</span></div>
+                        <div class="barra-container"><div class="barra" style="height: 75%;"></div><span>Abr</span></div>
+                        <div class="barra-container"><div class="barra" style="height: 90%;"></div><span>May</span></div>
+                        <div class="barra-container"><div class="barra" style="height: 95%;"></div><span>Jun</span></div>
+                    </div>
+                </div>
+
+                <!-- Gráfica 2: Ventas por Categoría -->
+                <div class="panel-grafica">
+                    <h3>Ventas por Categoría</h3>
+                    <div class="grafica-lineas">
+                        <div class="linea-progreso"><p>Licores</p><div class="barra-progreso"><div class="progreso-interno" style="width: 84%;"></div></div><span>84%</span></div>
+                        <div class="linea-progreso"><p>Cigarrillos</p><div class="barra-progreso"><div class="progreso-interno" style="width: 76%;"></div></div><span>76%</span></div>
+                        <div class="linea-progreso"><p>Gaseosas</p><div class="barra-progreso"><div class="progreso-interno" style="width: 70%;"></div></div><span>70%</span></div>
+                        <div class="linea-progreso"><p>Snacks</p><div class="barra-progreso"><div class="progreso-interno" style="width: 62%;"></div></div><span>62%</span></div>
+                        <div class="linea-progreso"><p>Abarrotes</p><div class="barra-progreso"><div class="progreso-interno" style="width: 45%;"></div></div><span>45%</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TABLA DE PRODUCTOS MÁS VENDIDOS -->
+            <section class="tabla-container">
+                <h3>Productos Más Vendidos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Ingresos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cerveza Poker</td>
+                            <td>Licores</td>
+                            <td>450</td>
+                            <td>$1.200.000</td>
+                        </tr>
+                        <tr>
+                            <td>Cigarrillos Mustang Azul</td>
+                            <td>Cigarrillos</td>
+                            <td>400</td>
+                            <td>$400.000</td>
+                        </tr>
+                        <tr>
+                            <td>Coca-Cola 350ml</td>
+                            <td>Gaseosas</td>
+                            <td>350</td>
+                            <td>$875.000</td>
+                        </tr>
+                        <tr>
+                            <td>Empanadas</td>
+                            <td>Snacks</td>
+                            <td>300</td>
+                            <td>$900.000</td>
+                        </tr>
+                        <tr>
+                            <td>Arroz Diana</td>
+                            <td>Abarrotes</td>
+                            <td>280</td>
+                            <td>$784.000</td>
+                        </tr>
+                        <tr>
+                            <td>Leche Alquería</td>
+                            <td>Lácteos</td>
+                            <td>210</td>
+                            <td>$882.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="reportes.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Nueva - Registrar Producto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="R_inventario.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+            <h2>TIENDA NUEVA</h2>
+            <nav>
+                <a href="#">Dashboard</a>
+                <a href="#" class="menu-activo">Inventario</a>
+                <a href="#">Ventas</a>
+                <a href="#">Clientes</a>
+                <a href="#">Créditos</a>
+                <a href="#">Reportes</a>
+                <a href="#">Usuarios</a>
+                <a href="#">Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="header-izquierda">
+                    <button class="btn-menu" id="btnMenu">☰</button>
+                    <h1>Registrar Producto</h1>
+                </div>
+                <div class="usuario">
+                    <span>Administrador</span>
+                    <a href="../index/index.html" id="cerrarSesion">Cerrar Sesión</a>
+                </div>
+            </header>
+
+            <!-- TARJETA FORMULARIO CENTRAL -->
+            <section class="formulario-container">
+                <div class="card-formulario">
+                    <div class="formulario-header">
+                        <h3>Información del Producto</h3>
+                        <div class="icono-formulario">📦</div>
+                    </div>
+
+                    <!-- CAMPOS DEL FORMULARIO -->
+                    <div class="grid-campos">
+                        <div class="campo">
+                            <label>Código del Producto</label>
+                            <input type="text" value="P007" readonly class="input-desactivado">
+                        </div>
+                        <div class="campo">
+                            <label>Nombre del Producto</label>
+                            <input type="text" placeholder="Ingrese el nombre del producto">
+                        </div>
+                        <div class="campo">
+                            <label>Categoría</label>
+                            <select id="selectCategoria">
+                                <option value="" disabled selected>Seleccionar Categoría</option>
+                                <option value="abarrotes">Abarrotes</option>
+                                <option value="lacteos">Lácteos</option>
+                                <option value="aseo">Aseo</option>
+                                <option value="snacks">Snacks</option>
+                                <option value="bebidas">Bebidas</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Marca</label>
+                            <select id="selectMarca">
+                                <option value="" disabled selected>Seleccionar Marca</option>
+                                <option value="alqueria">Alquería</option>
+                                <option value="diana">Diana</option>
+                                <option value="colgate">Colgate</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Precio de Compra</label>
+                            <input type="text" placeholder="$0">
+                        </div>
+                        <div class="campo">
+                            <label>Precio de Venta</label>
+                            <input type="text" placeholder="$0">
+                        </div>
+                        <div class="campo">
+                            <label>Stock Actual</label>
+                            <input type="number" placeholder="0">
+                        </div>
+                        <div class="campo">
+                            <label>Stock Mínimo</label>
+                            <input type="number" placeholder="0">
+                        </div>
+                        <div class="campo">
+                            <label>Estado</label>
+                            <select id="selectEstadoProducto">
+                                <option value="disponible" selected>Disponible</option>
+                                <option value="agotado">Agotado</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Imagen del Producto</label>
+                            <div class="campo-imagen">
+                                <span class="imagen-icono">🖼️</span>
+                                <span class="imagen-texto">JPG, PNG</span>
+                                <span class="imagen-link">Agregar Imagen</span>
+                            </div>
+                        </div>
+                        <div class="campo campo-full">
+                            <label>Descripción</label>
+                            <textarea placeholder="Ingrese una descripción del producto..." rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ACCIONES FINALES -->
+                    <div class="botones-acciones">
+                        <button class="btn-cancelar" id="btnCancelar">Cancelar</button>
+                        <button class="btn-guardar" id="btnGuardarProducto">Guardar Producto</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="overlay-menu" id="overlayMenu"></div>
+
+    <script src="R_inventario.js"></script>
+</body>
+</html>
