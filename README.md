@@ -11,8 +11,16 @@ La API (Node.js, Express y MySQL) se agrega en los siguientes commits.
 
 - `frontend/`: pantallas del sistema (14 módulos)
 - `backend/`: API (próximamente)
-- `basededatos/`: scripts SQL (próximamente)
-- `docs/`: documentación de los servicios (próximamente)
+- `basededatos/`: scripts SQL de la base de datos
+- `docs/`: modelo conceptual y lógico (y, próximamente, la documentación de los servicios)
+
+## Base de datos
+
+Base de datos `tienda_nueva` (MySQL / MariaDB, incluida en XAMPP), con 9 tablas:
+usuarios, clientes, productos, ventas, detalle_venta, cuentas_cobrar, abonos, gastos y movimientos_inventario.
+
+Para crearla: encender MySQL y Apache en XAMPP, abrir phpMyAdmin, ir a **Importar** y
+cargar el archivo `basededatos/01_estructura.sql`.
 
 ## Cómo ver el prototipo
 
