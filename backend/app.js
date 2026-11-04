@@ -3,6 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const { probarConexion } = require('./src/config/db');
+const authRoutes = require('./src/routes/authRoutes');
 
 const app = express();
 const puerto = process.env.PORT || 3001;
@@ -16,6 +17,21 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 // Ruta de comprobación: indica que la API está activa
 app.get('/api/salud', (req, res) => {
     res.json({ ok: true, mensaje: 'API de Tienda Nueva activa' });
+});
+
+// Rutas de la API
+app.use('/api', authRoutes);
+
+// Respuesta para rutas de la API que no existen
+app.use('/api', (req, res) => {
+    res.status(404).json({ ok: false, mensaje: 'Ruta no encontrada' });
+});
+
+// Manejo de errores: por ejemplo, un JSON mal escrito en el cuerpo de la petición
+app.use((error, req, res, next) => {
+    const estado = error.status || 500;
+    const mensaje = estado === 400 ? 'Solicitud inválida: revise el formato del JSON' : 'Error interno del servidor';
+    res.status(estado).json({ ok: false, mensaje });
 });
 
 // Arranca el servidor solo si la base de datos responde
