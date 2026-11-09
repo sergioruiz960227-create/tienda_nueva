@@ -11,8 +11,15 @@ const puerto = process.env.PORT || 3001;
 // Permite leer cuerpos de petición en formato JSON
 app.use(express.json());
 
-// Sirve las pantallas del front-end desde la misma dirección del servidor
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+// Sirve las pantallas del front-end desde la misma dirección del servidor.
+// Las páginas HTML no se guardan en la memoria del navegador, para que "atrás" no reabra una sesión cerrada
+app.use(express.static(path.join(__dirname, '..', 'frontend'), {
+    setHeaders: (res, rutaArchivo) => {
+        if (rutaArchivo.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-store');
+        }
+    }
+}));
 
 // Ruta de comprobación: indica que la API está activa
 app.get('/api/salud', (req, res) => {
