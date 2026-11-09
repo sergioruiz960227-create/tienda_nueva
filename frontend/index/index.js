@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    // Al llegar al inicio de sesión se cierra cualquier sesión anterior
+    borrarSesion();
+
     const formulario = document.getElementById("loginForm");
     const mensajeError = document.getElementById("mensajeError");
     const textoError = document.getElementById("textoError");
@@ -16,9 +19,36 @@ document.addEventListener("DOMContentLoaded", () => {
         mensajeError.hidden = true;
     }
 
+    // Vacía los campos y el aviso de error
+    function limpiarFormulario() {
+        if (formulario) {
+            formulario.reset();
+        }
+        usuarioInput.value = "";
+        passwordInput.value = "";
+        ocultarError();
+    }
+
+    // Al volver con la flecha "atrás" el navegador restaura lo que se había escrito: se borra por seguridad
+    window.addEventListener("pageshow", (evento) => {
+        const navegacion = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
+        const volvioConAtras = evento.persisted || (navegacion && navegacion.type === "back_forward");
+        if (volvioConAtras) {
+            limpiarFormulario();
+        }
+    });
+
+    // Traduce la respuesta de la API a un mensaje para el usuario
+    function mensajeParaRespuesta(respuesta) {
+        if (respuesta.estado === 401) {
+            return "El usuario o la contraseña son incorrectos.";
+        }
+        return respuesta.mensaje || "No fue posible iniciar sesión.";
+    }
+
     if (formulario) {
 
-        formulario.addEventListener("submit", (e) => {
+        formulario.addEventListener("submit", async (e) => {
 
             e.preventDefault();
 
@@ -35,18 +65,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Credenciales de prueba
-            if (usuario === "admin" && password === "1234") {
+            // Validar las credenciales contra la base de datos mediante la API
+            const boton = formulario.querySelector("button[type='submit']");
+            boton.disabled = true;
+            const respuesta = await llamarApi("/login", "POST", { usuario, contrasena: password });
+            boton.disabled = false;
+
+            if (respuesta.estado === 200 && respuesta.ok) {
 
                 ocultarError();
 
-                window.location.href = "../dashboard/dashboard.html";
+                // Se guarda el token y los datos del usuario para las demás pantallas
+                guardarSesion(respuesta.token, respuesta.usuario);
+
+                irA("../dashboard/dashboard.html");
 
             } else {
 
-                mostrarError(
-                    "El usuario o la contraseña son incorrectos."
-                );
+                mostrarError(mensajeParaRespuesta(respuesta));
 
                 passwordInput.value = "";
                 passwordInput.focus();
