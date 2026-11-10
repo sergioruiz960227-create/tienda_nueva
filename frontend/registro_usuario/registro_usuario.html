@@ -10,10 +10,8 @@
     <link rel="stylesheet" href="registro_usuario.css">
 </head>
 <body>
-
     <main class="registro-container">
         <section class="registro-card">
-
             <div class="registro-header">
                 <div>
                     <h1>Registro de Usuario</h1>
@@ -21,7 +19,6 @@
                 </div>
                 <div class="icono-usuario">👤</div>
             </div>
-
             <form id="registroForm">
                 <div class="grid-campos">
                     <div class="campo">
@@ -45,6 +42,10 @@
                         <input type="email" id="correo" name="correo" placeholder="Ingrese correo">
                     </div>
                     <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Ingrese teléfono (opcional)">
+                    </div>
+                    <div class="campo">
                         <label for="usuarioNuevo">Usuario</label>
                         <input type="text" id="usuarioNuevo" name="usuarioNuevo" placeholder="Ingrese usuario">
                     </div>
@@ -56,7 +57,7 @@
                         <label for="confirmarPassword">Confirme contraseña</label>
                         <input type="password" id="confirmarPassword" name="confirmarPassword" placeholder="Confirme contraseña">
                     </div>
-                    <div class="campo campo-full">
+                    <div class="campo">
                         <label for="rol">Rol</label>
                         <select id="rol" name="rol">
                             <option value="" disabled selected>Selecciona rol</option>
@@ -64,18 +65,21 @@
                             <option value="vendedor">Vendedor</option>
                         </select>
                     </div>
+                    <div class="campo campo-full" id="campoEstado" style="display: none;">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
                 </div>
-
                 <button type="submit">Registrar usuario</button>
             </form>
-
             <div class="links">
                 <a href="../index/index.html" id="linkVolver">Volver a Iniciar Sesión</a>
             </div>
-
         </section>
     </main>
-
     <script src="../js/api.js"></script>
     <script src="registro_usuario.js"></script>
 </body>
