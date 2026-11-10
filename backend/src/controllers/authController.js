@@ -2,16 +2,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../config/db');
+const { textoValido, opcional, correoValido, fechaValida } = require('../utils/validaciones');
 
 // Rondas de cifrado de bcrypt: más rondas = más seguro, pero más lento
 const RONDAS_CIFRADO = 10;
 const LONGITUD_MINIMA_CONTRASENA = 6;
 const CAMPOS_OBLIGATORIOS = ['nombres', 'apellidos', 'cedula', 'correo', 'usuario', 'contrasena'];
-
-// Devuelve true si el valor es un texto con contenido
-function textoValido(valor) {
-    return typeof valor === 'string' && valor.trim() !== '';
-}
 
 // Devuelve los campos obligatorios que faltan en el cuerpo de la petición
 function camposFaltantes(cuerpo) {
@@ -23,11 +19,6 @@ function definirRol(req) {
     const pedido = req.body.rol;
     const esAdmin = req.usuario && req.usuario.rol === 'Administrador';
     return esAdmin && ['Administrador', 'Vendedor'].includes(pedido) ? pedido : 'Vendedor';
-}
-
-// Convierte un texto opcional en null cuando viene vacío
-function opcional(valor) {
-    return textoValido(valor) ? valor.trim() : null;
 }
 
 // Guarda el usuario en la base de datos con la contraseña ya cifrada
@@ -50,6 +41,12 @@ async function registrar(req, res) {
     }
     if (cuerpo.contrasena.length < LONGITUD_MINIMA_CONTRASENA) {
         return res.status(400).json({ ok: false, mensaje: 'La contraseña debe tener al menos 6 caracteres' });
+    }
+    if (!correoValido(cuerpo.correo)) {
+        return res.status(400).json({ ok: false, mensaje: 'El correo no es válido' });
+    }
+    if (!fechaValida(cuerpo.fecha_nacimiento)) {
+        return res.status(400).json({ ok: false, mensaje: 'La fecha de nacimiento no es válida (use AAAA-MM-DD)' });
     }
     try {
         const hash = await bcrypt.hash(cuerpo.contrasena, RONDAS_CIFRADO);
