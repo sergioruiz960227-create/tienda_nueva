@@ -2,26 +2,81 @@
 
 Sistema de gestión para una tienda: ventas, inventario, clientes, créditos, usuarios y reportes.
 
+Proyecto formativo del programa Análisis y Desarrollo de Software (SENA).
+Aprendiz: Sergio Andrés Ruiz Sanabria.
+
 ## Estado actual
 
-Prototipo del front-end (HTML, CSS y JavaScript) con datos de ejemplo.
-La API (Node.js, Express y MySQL) se agrega en los siguientes commits.
+- **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
+- **API (Node.js, Express y MySQL):** autenticación (registro e inicio de sesión) y gestión de usuarios,
+  ya conectadas con las pantallas de Login, Registro de usuario y Usuarios.
+- Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
-## Estructura
+## Tecnologías
 
-- `frontend/`: pantallas del sistema (14 módulos)
-- `backend/`: API (próximamente)
-- `basededatos/`: scripts SQL de la base de datos
-- `docs/`: modelo conceptual y lógico (y, próximamente, la documentación de los servicios)
+Node.js, Express, MySQL / MariaDB (XAMPP), mysql2, bcryptjs, jsonwebtoken y dotenv.
 
-## Base de datos
+## Estructura del proyecto
 
-Base de datos `tienda_nueva` (MySQL / MariaDB, incluida en XAMPP), con 9 tablas:
-usuarios, clientes, productos, ventas, detalle_venta, cuentas_cobrar, abonos, gastos y movimientos_inventario.
+```
+backend/
+  app.js                 Punto de entrada del servidor
+  src/
+    config/db.js         Conexión a MySQL (pool de conexiones)
+    controllers/         Lógica de cada módulo
+    middlewares/         Verificación del token y del rol
+    routes/              Rutas de la API
+    utils/               Validaciones compartidas
+  .env.example           Plantilla de configuración
+basededatos/             Scripts SQL (estructura y datos iniciales)
+docs/                    Documentación (modelo conceptual y lógico)
+frontend/                Pantallas del sistema
+  js/api.js              Sesión y comunicación con la API
+```
 
-Para crearla: encender MySQL y Apache en XAMPP, abrir phpMyAdmin, ir a **Importar** y
-cargar el archivo `basededatos/01_estructura.sql`.
+## Instalación y ejecución
 
-## Cómo ver el prototipo
+1. **Requisitos:** Node.js y XAMPP (MySQL).
+2. **Base de datos:** encender MySQL y Apache en XAMPP, abrir phpMyAdmin, ir a **Importar** y cargar,
+   en este orden, `basededatos/01_estructura.sql` y `basededatos/02_datos_iniciales.sql`.
+3. **Configuración:** dentro de `backend/`, crear un archivo `.env` con el contenido de `.env.example`
+   y reemplazar `JWT_SECRET` por una frase larga y secreta.
+4. **Dependencias y arranque** (desde la carpeta `backend/`):
+   ```
+   npm install
+   npm run dev
+   ```
+5. **Abrir el sistema** en `http://localhost:3001`. El mismo servidor entrega las pantallas,
+   por lo que no se debe abrir con Live Server.
 
-Abrir `frontend/index.html` con la extensión Live Server de VS Code.
+## Usuarios de prueba
+
+| Usuario     | Contraseña    | Rol           |
+|-------------|---------------|---------------|
+| `admin`     | `Admin1234`   | Administrador |
+| `vendedor1` | `Vendedor123` | Vendedor      |
+
+Son credenciales de demostración; en un entorno real se deben cambiar.
+
+## Servicios disponibles
+
+Las respuestas son JSON con el formato `{ "ok": true, "mensaje": "..." }`.
+Las rutas protegidas exigen el encabezado `Authorization: Bearer <token>`, que entrega el login.
+
+| Método | Ruta                | Descripción                                    | Acceso                                       |
+|--------|---------------------|------------------------------------------------|----------------------------------------------|
+| GET    | `/api/salud`        | Comprueba que la API está activa               | Público                                      |
+| POST   | `/api/register`     | Registra un usuario                            | Público (crea Vendedores); el Administrador elige el rol |
+| POST   | `/api/login`        | Inicia sesión y entrega el token               | Público                                      |
+| GET    | `/api/usuarios`     | Lista los usuarios                             | Administrador                                |
+| GET    | `/api/usuarios/:id` | Consulta un usuario                            | Administrador                                |
+| PUT    | `/api/usuarios/:id` | Edita un usuario                               | Administrador                                |
+| DELETE | `/api/usuarios/:id` | Elimina un usuario (o lo desactiva si tiene historial) | Administrador                        |
+
+Códigos de estado: `200` correcto, `201` creado, `400` datos inválidos, `401` sin sesión o credenciales
+incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido y `500` error del servidor.
+
+## Pendiente
+
+Clientes, productos e inventario, ventas, créditos, reportes y dashboard. La documentación completa
+de cada servicio se agregará en `docs/` al terminar la API.
