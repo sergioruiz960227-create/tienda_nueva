@@ -53,27 +53,27 @@
                     <div class="grid-campos">
                         <div class="campo">
                             <label>Código del Cliente</label>
-                            <input type="text" value="CL007" readonly class="input-desactivado">
+                            <input type="text" id="codigoCliente" value="Se asigna al guardar" readonly class="input-desactivado">
                         </div>
                         <div class="campo">
                             <label>Nombre y Apellido</label>
-                            <input type="text" placeholder="Ingrese nombre y apellido">
+                            <input type="text" id="nombre" placeholder="Ingrese nombre y apellido">
                         </div>
                         <div class="campo">
                             <label>Teléfono</label>
-                            <input type="text" placeholder="Ingrese el teléfono">
+                            <input type="text" id="telefono" placeholder="Ingrese el teléfono">
                         </div>
                         <div class="campo">
                             <label>Correo Electrónico</label>
-                            <input type="email" placeholder="Ingrese el correo electrónico">
+                            <input type="email" id="correo" placeholder="Ingrese el correo electrónico">
                         </div>
                         <div class="campo">
                             <label>Dirección</label>
-                            <input type="text" placeholder="Ingrese la dirección">
+                            <input type="text" id="direccion" placeholder="Ingrese la dirección">
                         </div>
                         <div class="campo">
                             <label>Ciudad</label>
-                            <input type="text" placeholder="Ingrese la ciudad">
+                            <input type="text" id="ciudad" placeholder="Ingrese la ciudad">
                         </div>
                         <div class="campo">
                             <label>Tipo de Cliente</label>
@@ -91,9 +91,13 @@
                                 <option value="inactivo">Inactivo</option>
                             </select>
                         </div>
+                        <div class="campo">
+                            <label>Límite de Crédito</label>
+                            <input type="number" id="limiteCredito" min="0" step="1000" value="0" placeholder="0 = sin crédito">
+                        </div>
                         <div class="campo campo-full">
                             <label>Observaciones</label>
-                            <textarea placeholder="Ingrese observaciones del cliente..." rows="4"></textarea>
+                            <textarea id="observaciones" placeholder="Ingrese observaciones del cliente..." rows="4"></textarea>
                         </div>
                     </div>
 
