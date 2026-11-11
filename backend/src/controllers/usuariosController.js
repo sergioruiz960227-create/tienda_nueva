@@ -2,6 +2,7 @@
 const bcrypt = require('bcryptjs');
 const { pool } = require('../config/db');
 const { textoValido, opcional, correoValido, idValido, fechaValida } = require('../utils/validaciones');
+const { errorServidor } = require('../utils/respuestas');
 
 const RONDAS_CIFRADO = 10;
 const LONGITUD_MINIMA_CONTRASENA = 6;
@@ -10,12 +11,6 @@ const ESTADOS = ['Activo', 'Inactivo'];
 // Columnas que se devuelven al cliente (nunca la contraseña)
 const COLUMNAS = 'id_usuario, nombres, apellidos, cedula, fecha_nacimiento, correo, telefono, usuario, rol, '
     + 'estado, fecha_creacion';
-
-// Respuesta estándar para errores inesperados del servidor
-function errorServidor(res, contexto, error) {
-    console.error(`Error en ${contexto}:`, error.message);
-    return res.status(500).json({ ok: false, mensaje: 'Error interno del servidor' });
-}
 
 // Busca un usuario por su id; devuelve null si no existe
 async function buscarPorId(id) {

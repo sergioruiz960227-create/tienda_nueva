@@ -5,6 +5,7 @@ const express = require('express');
 const { probarConexion } = require('./src/config/db');
 const authRoutes = require('./src/routes/authRoutes');
 const usuariosRoutes = require('./src/routes/usuariosRoutes');
+const clientesRoutes = require('./src/routes/clientesRoutes');
 
 const app = express();
 const puerto = process.env.PORT || 3001;
@@ -30,6 +31,7 @@ app.get('/api/salud', (req, res) => {
 // Rutas de la API
 app.use('/api', authRoutes);
 app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/clientes', clientesRoutes);
 
 // Respuesta para rutas de la API que no existen
 app.use('/api', (req, res) => {
