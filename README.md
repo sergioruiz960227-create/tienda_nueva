@@ -8,8 +8,8 @@ Aprendiz: Sergio Andrés Ruiz Sanabria.
 ## Estado actual
 
 - **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
-- **API (Node.js, Express y MySQL):** autenticación (registro e inicio de sesión) y gestión de usuarios,
-  ya conectadas con las pantallas de Login, Registro de usuario y Usuarios.
+- **API (Node.js, Express y MySQL):** autenticación, gestión de usuarios y gestión de clientes,
+  ya conectadas con las pantallas de Login, Registro de usuario, Usuarios, Clientes y Registrar Cliente.
 - Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
 ## Tecnologías
@@ -26,7 +26,7 @@ backend/
     controllers/         Lógica de cada módulo
     middlewares/         Verificación del token y del rol
     routes/              Rutas de la API
-    utils/               Validaciones compartidas
+    utils/               Validaciones y respuestas compartidas
   .env.example           Plantilla de configuración
 basededatos/             Scripts SQL (estructura y datos iniciales)
 docs/                    Documentación (modelo conceptual y lógico)
@@ -60,23 +60,32 @@ Son credenciales de demostración; en un entorno real se deben cambiar.
 
 ## Servicios disponibles
 
-Las respuestas son JSON con el formato `{ "ok": true, "mensaje": "..." }`.
-Las rutas protegidas exigen el encabezado `Authorization: Bearer <token>`, que entrega el login.
+Las respuestas son JSON con el formato `{ "ok": true, "mensaje": "..." }`. Los listados devuelven
+además `total` y `datos`. Las rutas protegidas exigen el encabezado `Authorization: Bearer <token>`,
+que entrega el login.
 
-| Método | Ruta                | Descripción                                    | Acceso                                       |
-|--------|---------------------|------------------------------------------------|----------------------------------------------|
-| GET    | `/api/salud`        | Comprueba que la API está activa               | Público                                      |
-| POST   | `/api/register`     | Registra un usuario                            | Público (crea Vendedores); el Administrador elige el rol |
-| POST   | `/api/login`        | Inicia sesión y entrega el token               | Público                                      |
-| GET    | `/api/usuarios`     | Lista los usuarios                             | Administrador                                |
-| GET    | `/api/usuarios/:id` | Consulta un usuario                            | Administrador                                |
-| PUT    | `/api/usuarios/:id` | Edita un usuario                               | Administrador                                |
-| DELETE | `/api/usuarios/:id` | Elimina un usuario (o lo desactiva si tiene historial) | Administrador                        |
+| Método | Ruta                  | Descripción                                            | Acceso                                                   |
+|--------|-----------------------|--------------------------------------------------------|----------------------------------------------------------|
+| GET    | `/api/salud`          | Comprueba que la API está activa                       | Público                                                  |
+| POST   | `/api/register`       | Registra un usuario                                    | Público (crea Vendedores); el Administrador elige el rol |
+| POST   | `/api/login`          | Inicia sesión y entrega el token                       | Público                                                  |
+| GET    | `/api/usuarios`       | Lista los usuarios                                     | Administrador                                            |
+| GET    | `/api/usuarios/:id`   | Consulta un usuario                                    | Administrador                                            |
+| PUT    | `/api/usuarios/:id`   | Edita un usuario                                       | Administrador                                            |
+| DELETE | `/api/usuarios/:id`   | Elimina un usuario (o lo desactiva si tiene historial) | Administrador                                            |
+| GET    | `/api/clientes`       | Lista los clientes (filtros opcionales: `q`, `tipo`, `estado`) | Administrador y Vendedor                         |
+| GET    | `/api/clientes/:id`   | Consulta un cliente                                    | Administrador y Vendedor                                 |
+| POST   | `/api/clientes`       | Registra un cliente                                    | Administrador y Vendedor                                 |
+| PUT    | `/api/clientes/:id`   | Edita un cliente                                       | Administrador y Vendedor                                 |
+| DELETE | `/api/clientes/:id`   | Elimina un cliente (o lo desactiva si tiene historial) | Administrador                                            |
+
+Cada cliente incluye la fecha de su última compra, su saldo pendiente y si está en mora; estos
+datos se calculan a partir de las ventas y los créditos.
 
 Códigos de estado: `200` correcto, `201` creado, `400` datos inválidos, `401` sin sesión o credenciales
 incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido y `500` error del servidor.
 
 ## Pendiente
 
-Clientes, productos e inventario, ventas, créditos, reportes y dashboard. La documentación completa
+Productos e inventario, ventas, créditos, reportes y dashboard. La documentación completa
 de cada servicio se agregará en `docs/` al terminar la API.
