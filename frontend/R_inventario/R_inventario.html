@@ -53,11 +53,11 @@
                     <div class="grid-campos">
                         <div class="campo">
                             <label>Código del Producto</label>
-                            <input type="text" value="P007" readonly class="input-desactivado">
+                            <input type="text" id="codigoProducto" value="Se asigna al guardar" readonly class="input-desactivado">
                         </div>
                         <div class="campo">
                             <label>Nombre del Producto</label>
-                            <input type="text" placeholder="Ingrese el nombre del producto">
+                            <input type="text" id="nombre" placeholder="Ingrese el nombre del producto">
                         </div>
                         <div class="campo">
                             <label>Categoría</label>
@@ -82,19 +82,19 @@
                         </div>
                         <div class="campo">
                             <label>Precio de Compra</label>
-                            <input type="text" placeholder="$0">
+                            <input type="number" id="precioCompra" min="0" step="any" placeholder="0">
                         </div>
                         <div class="campo">
                             <label>Precio de Venta</label>
-                            <input type="text" placeholder="$0">
+                            <input type="number" id="precioVenta" min="0" step="any" placeholder="0">
                         </div>
                         <div class="campo">
                             <label>Stock Actual</label>
-                            <input type="number" placeholder="0">
+                            <input type="number" id="stockActual" min="0" step="1" placeholder="0">
                         </div>
                         <div class="campo">
                             <label>Stock Mínimo</label>
-                            <input type="number" placeholder="0">
+                            <input type="number" id="stockMinimo" min="0" step="1" placeholder="0">
                         </div>
                         <div class="campo">
                             <label>Estado</label>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="campo campo-full">
                             <label>Descripción</label>
-                            <textarea placeholder="Ingrese una descripción del producto..." rows="4"></textarea>
+                            <textarea id="descripcion" placeholder="Ingrese una descripción del producto..." rows="4"></textarea>
                         </div>
                     </div>
 
