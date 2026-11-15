@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 3. FORMULARIO DE VENTA CONECTADO A LA API
     const TASA_IVA = 0.19;
+    const CLIENTE_GENERAL = "Cliente General"; // para vender a quien no está registrado
 
     const selectCliente = document.getElementById("selectCliente");
     const selectMetodo = document.getElementById("selectMetodo");
@@ -136,6 +137,11 @@ document.addEventListener("DOMContentLoaded", function () {
         respuesta.datos.forEach((cliente) => {
             selectCliente.appendChild(crearOpcion(cliente.id_cliente, cliente.nombre));
         });
+        // Deja elegido el Cliente General: lo más común es vender de contado sin registrar al cliente
+        const opcionGeneral = Array.from(selectCliente.options).find((o) => o.textContent === CLIENTE_GENERAL);
+        if (opcionGeneral) {
+            selectCliente.value = opcionGeneral.value;
+        }
     }
 
     async function cargarCatalogo() {
@@ -250,6 +256,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (!selectMetodo.value) {
             return "Seleccione el método de pago.";
+        }
+        if (esCredito() && selectCliente.selectedOptions[0].textContent === CLIENTE_GENERAL) {
+            return "El Cliente General no tiene crédito. Elija un cliente registrado o cambie el método de pago.";
         }
         if (esCredito() && inputFechaLimite.value && inputFechaLimite.value < fechaHoyISO()) {
             return "La fecha límite de pago no puede ser anterior a hoy.";

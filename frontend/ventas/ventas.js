@@ -94,6 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const sesion = leerSesion();
     const esAdmin = Boolean(sesion) && sesion.usuario.rol === "Administrador";
 
+    // La columna Vendedor solo la ve el Administrador (el Vendedor solo ve sus propias ventas)
+    if (!esAdmin) {
+        document.getElementById("encabezadoVendedor").remove();
+    }
+
     // Convierte un valor en dinero con separador de miles: 12500 -> $12.500
     function formatearDinero(valor) {
         return "$" + Number(valor).toLocaleString("es-CO");
@@ -106,6 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         const [anio, mes, dia] = fecha.split(" ")[0].split("-");
         return dia + "/" + mes + "/" + anio;
+    }
+
+        // Usuario de quien registró la venta, con su rol: "vendedor1 (Vendedor)"
+    function nombreVendedor(venta) {
+        return venta.usuario_vendedor;
     }
 
     // En la base de datos el método se guarda sin tilde; en pantalla se muestra con ella
@@ -154,9 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const fila = document.createElement("tr");
+        fila.append(crearCelda(venta.numero_factura), crearCelda(venta.cliente));
+        if (esAdmin) {
+            fila.appendChild(crearCelda(nombreVendedor(venta)));
+        }
         fila.append(
-            crearCelda(venta.numero_factura),
-            crearCelda(venta.cliente),
             crearCelda(formatearFecha(venta.fecha)),
             crearCelda(formatearDinero(venta.total)),
             crearCelda(nombreMetodo(venta.metodo_pago)),
@@ -169,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Muestra un mensaje que ocupa toda la fila de la tabla (cargando, error o sin datos)
     function mostrarMensajeTabla(texto) {
         const celda = document.createElement("td");
-        celda.colSpan = 7;
+        celda.colSpan = esAdmin ? 8 : 7;
         celda.style.textAlign = "center";
         celda.textContent = texto;
         const fila = document.createElement("tr");
@@ -244,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "Factura: " + factura.numero_factura,
             "Fecha: " + formatearFecha(factura.fecha),
             "Cliente: " + factura.cliente,
-            "Vendedor: " + factura.vendedor,
+            "Vendedor: " + factura.vendedor + " (" + factura.rol_vendedor + ")",
             "Método de pago: " + nombreMetodo(factura.metodo_pago),
             "Estado: " + factura.estado
         ];
