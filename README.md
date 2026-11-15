@@ -40,7 +40,8 @@ frontend/                Pantallas del sistema
 
 1. **Requisitos:** Node.js y XAMPP (MySQL).
 2. **Base de datos:** encender MySQL y Apache en XAMPP, abrir phpMyAdmin, ir a **Importar** y cargar,
-   en este orden, `basededatos/01_estructura.sql` y `basededatos/02_datos_iniciales.sql`.
+   en este orden, `basededatos/01_estructura.sql` y `basededatos/02_datos_iniciales.sql`
+   (el segundo crea los usuarios de prueba y el cliente "Cliente General"; se puede cargar de nuevo sin repetirlos).
 3. **Configuración:** dentro de `backend/`, crear un archivo `.env` con el contenido de `.env.example`
    y reemplazar `JWT_SECRET` por una frase larga y secreta.
 4. **Dependencias y arranque** (desde la carpeta `backend/`):
@@ -111,6 +112,11 @@ Notas:
   (límite del cliente menos su saldo pendiente); si no se indica `fecha_limite`, se asignan 30 días.
 - Las facturas se numeran FV001, FV002... Las ventas no se editan ni se eliminan: se anulan. Una venta a
   crédito con abonos no se puede anular. Un Vendedor solo ve las ventas que él registró.
+- Las ventas a personas no registradas se hacen al cliente **Cliente General** (límite de crédito 0, por lo que
+  nunca se le vende a crédito). El servidor no deja editarlo, eliminarlo ni crear otro cliente con ese nombre,
+  y no se cuenta en "Clientes Activos". En Registrar Venta aparece preseleccionado.
+- El historial entrega quién registró cada venta (`vendedor`, `usuario_vendedor` y `rol_vendedor`); la pantalla de Ventas muestra
+  esa columna solo al Administrador.
 - El estado de una venta se calcula: Pagada, Pendiente, En mora (crédito vencido) o Anulada.
 
 Códigos de estado: `200` correcto, `201` creado, `400` datos inválidos, `401` sin sesión o credenciales
