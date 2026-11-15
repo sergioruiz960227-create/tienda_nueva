@@ -374,3 +374,20 @@ body{
         padding: 15px !important;
     }
 }
+
+
+/* CAMPOS DENTRO DE LA TABLA DE PRODUCTOS (selector y cantidad de cada fila) */
+.detalle-productos td select,
+.detalle-productos td input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radius-inputs);
+    font-size: 13px;
+    outline: none;
+    background: white;
+}
+
+.detalle-productos td input[type="number"] {
+    min-width: 70px;
+}

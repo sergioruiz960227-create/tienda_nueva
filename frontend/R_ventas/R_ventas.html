@@ -53,28 +53,31 @@
                     <div class="grid-campos">
                         <div class="campo">
                             <label>Número de Factura</label>
-                            <input type="text" value="FV001" readonly class="input-desactivado">
+                            <input type="text" id="numeroFactura" value="Se asigna al guardar" readonly class="input-desactivado">
                         </div>
                         <div class="campo">
                             <label>Fecha</label>
-                            <input type="text" value="18/06/2026" readonly class="input-desactivado">
+                            <input type="text" id="fechaVenta" value="" readonly class="input-desactivado">
                         </div>
                         <div class="campo">
                             <label>Cliente</label>
                             <select id="selectCliente">
                                 <option value="" disabled selected>Seleccionar Cliente</option>
-                                <option value="1">Ana Rodríguez</option>
-                                <option value="2">María Gómez</option>
                             </select>
                         </div>
                         <div class="campo">
                             <label>Método de pago</label>
                             <select id="selectMetodo">
                                 <option value="" disabled selected>Seleccionar Método</option>
-                                <option value="efectivo">Efectivo</option>
-                                <option value="credito">Crédito</option>
-                                <option value="transferencia">Transferencia</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Transferencia">Transferencia</option>
+                                <option value="Tarjeta">Tarjeta</option>
+                                <option value="Credito">Crédito</option>
                             </select>
+                        </div>
+                        <div class="campo" id="campoFechaLimite" style="display: none;">
+                            <label>Fecha límite de pago (si la deja vacía: 30 días)</label>
+                            <input type="date" id="fechaLimite">
                         </div>
                     </div>
 
@@ -91,49 +94,8 @@
                                     <th>Acción</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Coca-Cola 350ml</td>
-                                    <td>2</td>
-                                    <td>$2.500</td>
-                                    <td>$5.000</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Empanada</td>
-                                    <td>2</td>
-                                    <td>$3.000</td>
-                                    <td>$6.000</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Cigarrillo</td>
-                                    <td>1</td>
-                                    <td>$1.000</td>
-                                    <td>$1.000</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Leche Alquería</td>
-                                    <td>1</td>
-                                    <td>$4.200</td>
-                                    <td>$4.200</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Papel Higiénico Familia</td>
-                                    <td>2</td>
-                                    <td>$2.500</td>
-                                    <td>$5.000</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
-                                <tr>
-                                    <td>Café Sello Rojo</td>
-                                    <td>1</td>
-                                    <td>$6.500</td>
-                                    <td>$6.500</td>
-                                    <td><button class="btn-eliminar-item">🗑️</button></td>
-                                </tr>
+                            <tbody id="detalleProductos">
+                                <!-- Las filas se crean con R_ventas.js -->
                             </tbody>
                         </table>
                     </div>
@@ -143,9 +105,9 @@
                         <button class="btn-agregar-prod" id="btnAgregarProducto">+ Agregar producto</button>
                         
                         <div class="bloque-totales">
-                            <div class="fila-tot"><span>Subtotal:</span> <span>$27.700</span></div>
-                            <div class="fila-tot"><span>IVA (19%):</span> <span>$5.263</span></div>
-                            <div class="fila-tot total-final"><span>Total:</span> <span>$32.963</span></div>
+                            <div class="fila-tot"><span>Subtotal:</span> <span id="totalSubtotal">$0</span></div>
+                            <div class="fila-tot"><span>IVA (19%):</span> <span id="totalIva">$0</span></div>
+                            <div class="fila-tot total-final"><span>Total:</span> <span id="totalGeneral">$0</span></div>
                         </div>
                     </div>
 
