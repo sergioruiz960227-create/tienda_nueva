@@ -1,6 +1,7 @@
 // Controlador de clientes: consulta, registro, edición y eliminación
 const { pool } = require('../config/db');
 const { textoValido, opcional, correoValido, idValido } = require('../utils/validaciones');
+const { CLIENTE_GENERAL } = require('../utils/constantes');
 const { errorServidor } = require('../utils/respuestas');
 
 const TIPOS = ['Ocasional', 'Frecuente', 'Mayorista'];
@@ -120,12 +121,22 @@ function valoresCliente(cuerpo) {
         cuerpo.estado || 'Activo', opcional(cuerpo.observaciones)];
 }
 
+const MENSAJE_RESERVADO = `El nombre "${CLIENTE_GENERAL}" está reservado para las ventas de mostrador`;
+
+// El nombre "Cliente General" está reservado para las ventas de mostrador (sin importar mayúsculas)
+function esClienteGeneral(nombre) {
+    return textoValido(nombre) && nombre.trim().toLowerCase() === CLIENTE_GENERAL.toLowerCase();
+}
+
 // POST /api/clientes: registra un cliente
 async function crear(req, res) {
     const cuerpo = req.body || {};
     const problema = validarCliente(cuerpo);
     if (problema) {
         return res.status(400).json({ ok: false, mensaje: problema });
+    }
+    if (esClienteGeneral(cuerpo.nombre)) {
+        return res.status(409).json({ ok: false, mensaje: MENSAJE_RESERVADO });
     }
     try {
         const sql = 'INSERT INTO clientes (nombre, telefono, correo, direccion, ciudad, tipo_cliente, '
@@ -146,8 +157,15 @@ async function actualizar(req, res) {
         return res.status(400).json({ ok: false, mensaje: problema });
     }
     try {
-        if (!(await buscarPorId(id))) {
+        const actual = await buscarPorId(id);
+        if (!actual) {
             return res.status(404).json({ ok: false, mensaje: 'Cliente no encontrado' });
+        }
+        if (esClienteGeneral(actual.nombre)) {
+            return res.status(409).json({ ok: false, mensaje: `El ${CLIENTE_GENERAL} no se puede modificar` });
+        }
+        if (esClienteGeneral(cuerpo.nombre)) {
+            return res.status(409).json({ ok: false, mensaje: MENSAJE_RESERVADO });
         }
         const sql = 'UPDATE clientes SET nombre = ?, telefono = ?, correo = ?, direccion = ?, ciudad = ?, '
             + 'tipo_cliente = ?, limite_credito = ?, estado = ?, observaciones = ? WHERE id_cliente = ?';
@@ -172,6 +190,10 @@ async function eliminar(req, res) {
         return res.status(400).json({ ok: false, mensaje: 'El id del cliente no es válido' });
     }
     try {
+        const actual = await buscarPorId(id);
+        if (actual && esClienteGeneral(actual.nombre)) {
+            return res.status(409).json({ ok: false, mensaje: `El ${CLIENTE_GENERAL} no se puede eliminar` });
+        }
         const [resultado] = await pool.query('DELETE FROM clientes WHERE id_cliente = ?', [id]);
         if (resultado.affectedRows === 0) {
             return res.status(404).json({ ok: false, mensaje: 'Cliente no encontrado' });

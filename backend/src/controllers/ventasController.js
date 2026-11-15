@@ -3,6 +3,7 @@ const { pool } = require('../config/db');
 const { registrarVenta, anularVenta } = require('../services/ventasServicio');
 const { textoValido, idValido, fechaValida } = require('../utils/validaciones');
 const { errorServidor } = require('../utils/respuestas');
+const { CLIENTE_GENERAL } = require('../utils/constantes');
 
 const METODOS = ['Efectivo', 'Transferencia', 'Tarjeta', 'Credito'];
 const ESTADOS = ['Pagada', 'Pendiente', 'En mora', 'Anulada'];
@@ -15,7 +16,7 @@ const LIMITE_MAXIMO = 100;
 // En mora si venció el plazo, y Pendiente en otro caso
 const SELECT_VENTAS = `
     SELECT v.id_venta, v.numero_factura, v.fecha, v.id_cliente, c.nombre AS cliente, v.id_usuario,
-        CONCAT(u.nombres, ' ', u.apellidos) AS vendedor, v.subtotal, v.iva, v.total, v.metodo_pago,
+        CONCAT(u.nombres, ' ', u.apellidos) AS vendedor, u.usuario AS usuario_vendedor, u.rol AS rol_vendedor,        v.subtotal, v.iva, v.total, v.metodo_pago,
         cc.fecha_limite AS fecha_limite_credito, cc.saldo_pendiente,
         CASE WHEN v.estado = 'Anulada' THEN 'Anulada'
              WHEN cc.id_cuenta IS NULL THEN v.estado
@@ -164,7 +165,8 @@ async function resumen(req, res) {
                 THEN 1 END), 0) AS facturas_mes
             FROM ventas WHERE estado <> 'Anulada'${propias}`;
         const [[ventas]] = await pool.query(sql, esAdministrador(req) ? [] : [req.usuario.id]);
-        const [[clientes]] = await pool.query("SELECT COUNT(*) AS total FROM clientes WHERE estado = 'Activo'");
+        const [[clientes]] = await pool.query(
+            "SELECT COUNT(*) AS total FROM clientes WHERE estado = 'Activo' AND nombre <> ?", [CLIENTE_GENERAL]);
         return res.json({ ok: true, datos: { ...ventas, clientes_activos: clientes.total } });
     } catch (error) {
         return errorServidor(res, 'el resumen de ventas', error);
