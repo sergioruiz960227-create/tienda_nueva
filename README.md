@@ -10,7 +10,7 @@ Aprendiz: Sergio Andrés Ruiz Sanabria.
 - **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
 - **API (Node.js, Express y MySQL):** autenticación, usuarios, clientes y productos e inventario,
   ya conectadas con las pantallas de Login, Registro de usuario, Usuarios, Clientes, Registrar Cliente,
-  Inventario y Registrar Producto.
+  Inventario, Registrar Producto, Ventas y Registrar Venta.
 - Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
 ## Tecnologías
@@ -27,6 +27,7 @@ backend/
     controllers/         Lógica de cada módulo
     middlewares/         Verificación del token y del rol
     routes/              Rutas de la API
+    services/            Reglas del negocio que usan transacciones (ventas)
     utils/               Validaciones, respuestas y transacciones compartidas
   .env.example           Plantilla de configuración
 basededatos/             Scripts SQL (estructura y datos iniciales)
@@ -88,6 +89,11 @@ que entrega el login.
 | PUT    | `/api/productos/:id`              | Edita un producto (un cambio de stock queda como ajuste manual) | Administrador y Vendedor                              |
 | PATCH  | `/api/productos/:id/surtir`       | Registra la llegada de mercancía (`cantidad`, y opcional `precio_compra`) | Administrador y Vendedor                    |
 | DELETE | `/api/productos/:id`              | Elimina un producto que nunca se ha vendido                  | Administrador                                            |
+| POST   | `/api/ventas`                     | Registra una venta (`id_cliente`, `metodo_pago`, `productos`, y `fecha_limite` si es a crédito) | Administrador y Vendedor |
+| GET    | `/api/ventas`                     | Historial paginado (filtros: `q`, `estado`, `metodo`, `desde`, `hasta`, `pagina`, `limite`) | Administrador y Vendedor |
+| GET    | `/api/ventas/resumen`             | Cifras de las tarjetas: ventas y facturas de hoy y del mes, clientes activos | Administrador y Vendedor |
+| GET    | `/api/ventas/:id`                 | Factura completa, con sus productos                          | Administrador y Vendedor                                 |
+| PATCH  | `/api/ventas/:id/anular`          | Anula una venta y devuelve el stock al inventario            | Administrador                                            |
 
 Notas:
 
@@ -96,12 +102,21 @@ Notas:
 - Cada producto incluye `estado_stock` (Disponible, Stock bajo o Agotado), calculado a partir de sus
   existencias y de su stock mínimo. Un producto sin existencias queda como Agotado y vuelve a Disponible
   cuando se surte.
-- Todo movimiento de existencias (stock inicial, surtido o ajuste) queda anotado en el historial del producto.
+- Todo movimiento de existencias (stock inicial, surtido, venta, anulación o ajuste) queda anotado en el
+  historial del producto.
+- En una venta, el servidor toma los precios de la base de datos y calcula el subtotal, el IVA (19 %) y el total.
+  Todo se guarda en una transacción: la venta, su detalle, el descuento de stock y, si es a crédito, la cuenta
+  por cobrar. Dos ventas simultáneas del último producto no pueden dejar el stock en negativo.
+- Métodos de pago: `Efectivo`, `Transferencia`, `Tarjeta` y `Credito`. El crédito exige cupo disponible
+  (límite del cliente menos su saldo pendiente); si no se indica `fecha_limite`, se asignan 30 días.
+- Las facturas se numeran FV001, FV002... Las ventas no se editan ni se eliminan: se anulan. Una venta a
+  crédito con abonos no se puede anular. Un Vendedor solo ve las ventas que él registró.
+- El estado de una venta se calcula: Pagada, Pendiente, En mora (crédito vencido) o Anulada.
 
 Códigos de estado: `200` correcto, `201` creado, `400` datos inválidos, `401` sin sesión o credenciales
 incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido o en uso y `500` error del servidor.
 
 ## Pendiente
 
-Ventas, créditos, reportes y dashboard. La documentación completa de cada servicio se agregará en
+Créditos, reportes y dashboard. La documentación completa de cada servicio se agregará en
 `docs/` al terminar la API.
