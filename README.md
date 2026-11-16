@@ -10,7 +10,7 @@ Aprendiz: Sergio Andrés Ruiz Sanabria.
 - **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
 - **API (Node.js, Express y MySQL):** autenticación, usuarios, clientes y productos e inventario,
   ya conectadas con las pantallas de Login, Registro de usuario, Usuarios, Clientes, Registrar Cliente,
-  Inventario, Registrar Producto, Ventas y Registrar Venta.
+  Inventario, Registrar Producto, Ventas, Registrar Venta, Créditos y Registrar Crédito.
 - Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
 ## Tecnologías
@@ -95,6 +95,13 @@ que entrega el login.
 | GET    | `/api/ventas/resumen`             | Cifras de las tarjetas: ventas y facturas de hoy y del mes, clientes activos | Administrador y Vendedor |
 | GET    | `/api/ventas/:id`                 | Factura completa, con sus productos                          | Administrador y Vendedor                                 |
 | PATCH  | `/api/ventas/:id/anular`          | Anula una venta y devuelve el stock al inventario            | Administrador                                            |
+| GET    | `/api/creditos`                   | Listado paginado (filtros: `q` por código, cliente o factura, `estado`, `pagina`, `limite`) | Administrador y Vendedor |
+| GET    | `/api/creditos/resumen`           | Cifras de las tarjetas: créditos activos, pendientes, en mora y saldo total | Administrador y Vendedor |
+| GET    | `/api/creditos/:id`               | Detalle del crédito con su historial de abonos               | Administrador y Vendedor                                 |
+| POST   | `/api/creditos`                   | Crea un crédito manual (`id_cliente`, `valor`, `fecha_limite`, `observaciones`) | Administrador                         |
+| PUT    | `/api/creditos/:id`               | Cambia la fecha límite y las observaciones                   | Administrador                                            |
+| DELETE | `/api/creditos/:id`               | Elimina un crédito manual sin abonos                         | Administrador                                            |
+| POST   | `/api/creditos/:id/abonos`        | Registra un abono (`valor`, `metodo_pago`)                   | Administrador y Vendedor                                 |
 
 Notas:
 
@@ -118,11 +125,21 @@ Notas:
 - El historial entrega quién registró cada venta (`vendedor`, `usuario_vendedor` y `rol_vendedor`); la pantalla de Ventas muestra
   esa columna solo al Administrador.
 - El estado de una venta se calcula: Pagada, Pendiente, En mora (crédito vencido) o Anulada.
+- Los créditos nacen de dos formas: al vender a crédito (se crean solos) o como crédito manual del Administrador.
+  Se muestran como CR001, CR002... Su estado se calcula con la misma regla que Ventas: Pagado (saldo cero),
+  En mora (hay saldo y la fecha límite ya pasó) o Pendiente.
+- Un crédito manual respeta el cupo del cliente (límite de crédito menos sus saldos pendientes), igual que una
+  venta a crédito. Los abonos liberan ese cupo.
+- Un abono no puede superar el saldo; al llegar a cero el crédito queda Pagado. El valor y el saldo de un crédito
+  no se editan: solo cambian con abonos. Un crédito que viene de una venta se cancela anulando la venta, y solo
+  se pueden eliminar créditos manuales sin abonos.
+- Cada abono, creación y eliminación se hace en una transacción que bloquea la cuenta: dos abonos simultáneos al
+  mismo crédito, o anular una venta mientras se abona, nunca dejan los saldos descuadrados.
 
 Códigos de estado: `200` correcto, `201` creado, `400` datos inválidos, `401` sin sesión o credenciales
 incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido o en uso y `500` error del servidor.
 
 ## Pendiente
 
-Créditos, reportes y dashboard. La documentación completa de cada servicio se agregará en
+Reportes y dashboard. La documentación completa de cada servicio se agregará en
 `docs/` al terminar la API.
