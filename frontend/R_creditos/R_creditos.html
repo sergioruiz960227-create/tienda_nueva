@@ -53,54 +53,34 @@
                     <div class="grid-campos">
                         <div class="campo">
                             <label>Código del Crédito</label>
-                            <input type="text" value="CR007" readonly class="input-desactivado">
+                            <input type="text" id="codigoCredito" value="Se asigna al guardar" readonly class="input-desactivado">
                         </div>
+
                         <div class="campo">
                             <label>Fecha</label>
-                            <input type="text" value="18/08/2026" readonly class="input-desactivado">
+                            <input type="text" id="fechaCredito" value="" readonly class="input-desactivado">
                         </div>
+
                         <div class="campo">
                             <label>Cliente</label>
                             <select id="selectCliente">
                                 <option value="" disabled selected>Seleccionar Cliente</option>
-                                <option value="1">Ana Rodríguez</option>
-                                <option value="2">Juan Pérez</option>
-                                <option value="3">Laura Torres</option>
                             </select>
                         </div>
-                        <div class="campo">
-                            <label>Estado</label>
-                            <select id="selectEstadoCredito">
-                                <option value="" disabled selected>Seleccionar Estado</option>
-                                <option value="pendiente">Pendiente</option>
-                                <option value="pagado">Pagado</option>
-                                <option value="mora">En Mora</option>
-                            </select>
-                        </div>
+
                         <div class="campo">
                             <label>Valor del Crédito</label>
-                            <input type="text" placeholder="$0">
+                            <input type="number" id="valorCredito" placeholder="$0" min="1" step="0.01">
                         </div>
+
                         <div class="campo">
-                            <label>Saldo Pendiente</label>
-                            <input type="text" placeholder="$0">
+                            <label id="etiquetaFechaLimite">Fecha Límite (si la deja vacía: 30 días)</label>
+                            <input type="date" id="fechaLimite">
                         </div>
-                        <div class="campo">
-                            <label>Fecha Límite</label>
-                            <input type="date">
-                        </div>
-                        <div class="campo">
-                            <label>Método de Pago</label>
-                            <select id="selectMetodoPago">
-                                <option value="" disabled selected>Seleccionar Método</option>
-                                <option value="efectivo">Efectivo</option>
-                                <option value="transferencia">Transferencia</option>
-                                <option value="tarjeta">Tarjeta</option>
-                            </select>
-                        </div>
+
                         <div class="campo campo-full">
                             <label>Observaciones</label>
-                            <textarea placeholder="Ingrese observaciones del crédito..." rows="4"></textarea>
+                            <textarea id="observaciones" placeholder="Ingrese observaciones del crédito..." rows="4" maxlength="500"></textarea>
                         </div>
                     </div>
 

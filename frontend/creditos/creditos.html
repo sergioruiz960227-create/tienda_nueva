@@ -100,98 +100,48 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>CR001</td>
-                            <td>Ana Rodríguez</td>
-                            <td>01/06/2026</td>
-                            <td>$80.000</td>
-                            <td>$20.000</td>
-                            <td><span class="badge pendiente">Pendiente</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CR002</td>
-                            <td>María Gómez</td>
-                            <td>03/06/2026</td>
-                            <td>$50.000</td>
-                            <td>$0</td>
-                            <td><span class="badge pagado">Pagado</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CR003</td>
-                            <td>Juan Pérez</td>
-                            <td>06/06/2026</td>
-                            <td>$120.000</td>
-                            <td>$35.000</td>
-                            <td><span class="badge mora">En Mora</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CR004</td>
-                            <td>Luis Martínez</td>
-                            <td>15/06/2026</td>
-                            <td>$70.000</td>
-                            <td>$15.000</td>
-                            <td><span class="badge mora">En Mora</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CR005</td>
-                            <td>Carlos Ruiz</td>
-                            <td>28/05/2026</td>
-                            <td>$90.000</td>
-                            <td>$40.000</td>
-                            <td><span class="badge pendiente">Pendiente</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>CR006</td>
-                            <td>Diana Torres</td>
-                            <td>04/06/2026</td>
-                            <td>$60.000</td>
-                            <td>$0</td>
-                            <td><span class="badge pagado">Pagado</span></td>
-                            <td class="acciones-celda">
-                                <button class="btn-accion btn-abonar" title="Registrar Abono">💵</button>
-                                <button class="btn-accion btn-editar" title="Editar Crédito">✏️</button>
-                                <button class="btn-accion btn-eliminar" title="Eliminar Crédito">🗑️</button>
-                            </td>
-                        </tr>
+                        <!-- Los créditos se cargan desde la API (creditos.js) -->
                     </tbody>
                 </table>
 
                 <!-- PAGINACIÓN -->
                 <div class="paginacion">
-                    <button class="btn-pag">&larr; Anterior</button>
-                    <span>Página 1 de 5</span>
-                    <button class="btn-pag">Siguiente &rarr;</button>
+                    <button class="btn-pag" id="btnAnterior" type="button">&larr; Anterior</button>
+                    <span id="textoPagina">Página 1 de 1</span>
+                    <button class="btn-pag" id="btnSiguiente" type="button">Siguiente &rarr;</button>
                 </div>
             </section>
         </main>
     </div>
 
     <div class="overlay-menu" id="overlayMenu"></div>
+
+    <!-- VENTANA PARA REGISTRAR UN ABONO (la abre creditos.js desde el botón 💵 de cada crédito) -->
+    <div class="modal-fondo" id="modalAbono">
+        <div class="modal-caja" role="dialog" aria-modal="true" aria-labelledby="tituloAbono">
+            <h3 id="tituloAbono">Registrar Abono</h3>
+            <p class="modal-texto" id="resumenAbono"></p>
+
+            <div class="modal-campo">
+                <label for="valorAbono">Valor del abono</label>
+                <input type="number" id="valorAbono" min="0.01" step="0.01">
+            </div>
+
+            <div class="modal-campo">
+                <label for="metodoAbono">Método de pago</label>
+                <select id="metodoAbono">
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                </select>
+            </div>
+
+            <div class="modal-botones">
+                <button type="button" class="modal-cancelar" id="btnCancelarAbono">Cancelar</button>
+                <button type="button" class="modal-confirmar" id="btnConfirmarAbono">Registrar Abono</button>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/api.js"></script>
     <script src="creditos.js"></script>

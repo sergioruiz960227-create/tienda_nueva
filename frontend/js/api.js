@@ -8,7 +8,7 @@ const CLAVE_SESION = "tiendaNuevaSesion";
 const PAGINAS_PUBLICAS = ["/index/", "/registro_usuario/"];
 
 // Pantallas que solo puede abrir el rol Administrador
-const PAGINAS_SOLO_ADMIN = ["/usuarios/"];
+const PAGINAS_SOLO_ADMIN = ["/usuarios/", "/R_creditos/"];
 
 // Cambia de pantalla (se usa una sola función para poder controlarla y probarla fácilmente)
 function irA(direccion) {
