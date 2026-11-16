@@ -59,8 +59,9 @@ function calcularTotales(lineas) {
     return { subtotal, iva, total: redondear(subtotal + iva) };
 }
 
-// Una venta a crédito exige que el cliente tenga cupo y que el total no lo supere
-async function validarCredito(conexion, cliente, total) {
+// Un crédito exige que el cliente tenga cupo y que el valor no lo supere
+// (la usan las ventas a crédito y los créditos manuales)
+async function validarCredito(conexion, cliente, total, concepto = 'La venta') {
     const sql = 'SELECT COALESCE(SUM(saldo_pendiente), 0) AS saldo FROM cuentas_cobrar WHERE id_cliente = ?';
     const [[fila]] = await conexion.query(sql, [cliente.id_cliente]);
     const disponible = redondear(cliente.limite_credito - fila.saldo);
@@ -68,7 +69,7 @@ async function validarCredito(conexion, cliente, total) {
         throw new ErrorNegocio(409, 'El cliente no tiene crédito autorizado');
     }
     if (total > disponible) {
-        throw new ErrorNegocio(409, `La venta ($${total}) supera el crédito disponible del cliente `
+        throw new ErrorNegocio(409, `${concepto} ($${total}) supera el crédito disponible del cliente `
             + `($${disponible})`);
     }
 }
@@ -179,6 +180,9 @@ async function anularVenta(idVenta, idUsuario) {
         if (ventas[0].estado === 'Anulada') {
             throw new ErrorNegocio(409, 'La venta ya está anulada');
         }
+        // Se bloquea la cuenta antes de contar los abonos: si alguien registra un abono al mismo tiempo,
+        // uno de los dos espera al otro y el resultado siempre es coherente
+        await conexion.query('SELECT id_cuenta FROM cuentas_cobrar WHERE id_venta = ? FOR UPDATE', [idVenta]);
         const [[abonos]] = await conexion.query('SELECT COUNT(*) AS total FROM abonos a JOIN cuentas_cobrar cc '
             + 'ON cc.id_cuenta = a.id_cuenta WHERE cc.id_venta = ?', [idVenta]);
         if (abonos.total > 0) {
@@ -190,4 +194,4 @@ async function anularVenta(idVenta, idUsuario) {
     });
 }
 
-module.exports = { registrarVenta, anularVenta };
+module.exports = { registrarVenta, anularVenta, obtenerCliente, validarCredito, resolverFechaLimite, redondear };

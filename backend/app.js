@@ -8,6 +8,7 @@ const usuariosRoutes = require('./src/routes/usuariosRoutes');
 const clientesRoutes = require('./src/routes/clientesRoutes');
 const productosRoutes = require('./src/routes/productosRoutes');
 const ventasRoutes = require('./src/routes/ventasRoutes');
+const creditosRoutes = require('./src/routes/creditosRoutes');
 
 const app = express();
 const puerto = process.env.PORT || 3001;
@@ -36,6 +37,7 @@ app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/clientes', clientesRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/ventas', ventasRoutes);
+app.use('/api/creditos', creditosRoutes);
 
 // Respuesta para rutas de la API que no existen
 app.use('/api', (req, res) => {
