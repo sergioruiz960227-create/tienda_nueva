@@ -10,7 +10,7 @@ Aprendiz: Sergio Andrés Ruiz Sanabria.
 - **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
 - **API (Node.js, Express y MySQL):** autenticación, usuarios, clientes y productos e inventario,
   ya conectadas con las pantallas de Login, Registro de usuario, Usuarios, Clientes, Registrar Cliente,
-  Inventario, Registrar Producto, Ventas, Registrar Venta, Créditos, Registrar Crédito y Reportes.
+  Inventario, Registrar Producto, Ventas, Registrar Venta, Créditos, Registrar Crédito, Reportes y Dashboard.
 - Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
 ## Tecnologías
@@ -103,6 +103,7 @@ que entrega el login.
 | DELETE | `/api/creditos/:id`               | Elimina un crédito manual sin abonos                         | Administrador                                            |
 | POST   | `/api/creditos/:id/abonos`        | Registra un abono (`valor`, `metodo_pago`)                   | Administrador y Vendedor                                 |
 | GET    | `/api/reportes`                   | Reporte de un rango de fechas (`desde` y `hasta`, AAAA-MM-DD): cifras, ventas por mes, ventas por categoría y productos más vendidos | Administrador (todas las ventas) y Vendedor (solo las suyas) |
+| GET    | `/api/dashboard`                  | Cifras del Dashboard (ventas de hoy, productos, clientes, stock bajo, agotados) y las 6 ventas más recientes | Administrador (toda la tienda) y Vendedor (solo sus ventas) |
 
 Notas:
 
@@ -138,6 +139,10 @@ Notas:
   año). "Ventas Totales" es el total facturado con IVA, incluidas las ventas a crédito; los ingresos por producto
   y por categoría van sin IVA. "Clientes Atendidos" no cuenta al Cliente General. "Créditos Activos" es la cifra
   de hoy (no depende del rango). La gráfica de meses muestra los 6 meses que terminan en la fecha "hasta".
+- Dashboard: usa las mismas reglas que las otras pantallas, para que las cifras coincidan. "Ventas Hoy" es la de
+  Ventas, "Productos" y "Stock Bajo" son las de Inventario (el stock bajo no incluye los agotados, que se muestran
+  aparte) y "Clientes" no cuenta al Cliente General. Las ventas recientes no incluyen las anuladas y su estado se
+  calcula igual que en Ventas. Un Vendedor ve solo sus ventas; productos, clientes y stock son de toda la tienda.
 - Un Vendedor ve el reporte solo con sus propias ventas (y los créditos de sus ventas). El servidor aplica el
   filtro según el usuario de la sesión, por lo que no se puede cambiar desde la pantalla ni desde la dirección.
 - Todas las cifras de un reporte se calculan dentro de una misma transacción, para que salgan de la misma
@@ -150,5 +155,5 @@ incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido o en us
 
 ## Pendiente
 
-Dashboard. La documentación completa de cada servicio se agregará en
+Configuración. La documentación completa de cada servicio se agregará en
 `docs/` al terminar la API.
