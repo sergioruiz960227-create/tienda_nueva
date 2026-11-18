@@ -462,3 +462,44 @@ td{
         padding: 15px !important;
     }
 }
+
+
+/* VALOR ENCIMA DE CADA BARRA DE LA GRÁFICA DE VENTAS */
+.barra {
+    position: relative;
+}
+
+.valor-barra {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--texto-secundario);
+    white-space: nowrap;
+}
+
+/* AVISO "SOLO TUS VENTAS" (SE MUESTRA AL VENDEDOR) */
+.aviso-alcance {
+    display: none;
+    font-size: 13px;
+    color: var(--texto-secundario);
+}
+
+.aviso-alcance.activo {
+    display: block;
+}
+
+/* MENSAJE CUANDO NO HAY VENTAS EN EL PERIODO */
+.mensaje-vacio {
+    font-size: 13px;
+    color: var(--texto-secundario);
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* BOTÓN MIENTRAS SE CONSULTA EL REPORTE */
+.btn-generar:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
