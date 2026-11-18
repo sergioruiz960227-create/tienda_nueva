@@ -10,7 +10,7 @@ Aprendiz: Sergio Andrés Ruiz Sanabria.
 - **Front-end:** 14 pantallas (HTML, CSS y JavaScript).
 - **API (Node.js, Express y MySQL):** autenticación, usuarios, clientes y productos e inventario,
   ya conectadas con las pantallas de Login, Registro de usuario, Usuarios, Clientes, Registrar Cliente,
-  Inventario, Registrar Producto, Ventas, Registrar Venta, Créditos y Registrar Crédito.
+  Inventario, Registrar Producto, Ventas, Registrar Venta, Créditos, Registrar Crédito y Reportes.
 - Los demás módulos se conectan por etapas. Mientras tanto, sus pantallas muestran datos de ejemplo.
 
 ## Tecnologías
@@ -102,6 +102,7 @@ que entrega el login.
 | PUT    | `/api/creditos/:id`               | Cambia la fecha límite y las observaciones                   | Administrador                                            |
 | DELETE | `/api/creditos/:id`               | Elimina un crédito manual sin abonos                         | Administrador                                            |
 | POST   | `/api/creditos/:id/abonos`        | Registra un abono (`valor`, `metodo_pago`)                   | Administrador y Vendedor                                 |
+| GET    | `/api/reportes`                   | Reporte de un rango de fechas (`desde` y `hasta`, AAAA-MM-DD): cifras, ventas por mes, ventas por categoría y productos más vendidos | Administrador (todas las ventas) y Vendedor (solo las suyas) |
 
 Notas:
 
@@ -133,6 +134,14 @@ Notas:
 - Un abono no puede superar el saldo; al llegar a cero el crédito queda Pagado. El valor y el saldo de un crédito
   no se editan: solo cambian con abonos. Un crédito que viene de una venta se cancela anulando la venta, y solo
   se pueden eliminar créditos manuales sin abonos.
+- Reportes: las ventas anuladas no cuentan y el rango incluye completos los días "desde" y "hasta" (máximo un
+  año). "Ventas Totales" es el total facturado con IVA, incluidas las ventas a crédito; los ingresos por producto
+  y por categoría van sin IVA. "Clientes Atendidos" no cuenta al Cliente General. "Créditos Activos" es la cifra
+  de hoy (no depende del rango). La gráfica de meses muestra los 6 meses que terminan en la fecha "hasta".
+- Un Vendedor ve el reporte solo con sus propias ventas (y los créditos de sus ventas). El servidor aplica el
+  filtro según el usuario de la sesión, por lo que no se puede cambiar desde la pantalla ni desde la dirección.
+- Todas las cifras de un reporte se calculan dentro de una misma transacción, para que salgan de la misma
+  "foto" de la base de datos aunque se esté vendiendo en ese momento.
 - Cada abono, creación y eliminación se hace en una transacción que bloquea la cuenta: dos abonos simultáneos al
   mismo crédito, o anular una venta mientras se abona, nunca dejan los saldos descuadrados.
 
@@ -141,5 +150,5 @@ incorrectas, `403` sin permiso, `404` no encontrado, `409` dato repetido o en us
 
 ## Pendiente
 
-Reportes y dashboard. La documentación completa de cada servicio se agregará en
+Dashboard. La documentación completa de cada servicio se agregará en
 `docs/` al terminar la API.
