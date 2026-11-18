@@ -10,6 +10,7 @@ const productosRoutes = require('./src/routes/productosRoutes');
 const ventasRoutes = require('./src/routes/ventasRoutes');
 const creditosRoutes = require('./src/routes/creditosRoutes');
 const reportesRoutes = require('./src/routes/reportesRoutes');
+const dashboardRoutes = require('./src/routes/dashboardRoutes');
 
 const app = express();
 const puerto = process.env.PORT || 3001;
@@ -40,6 +41,7 @@ app.use('/api/productos', productosRoutes);
 app.use('/api/ventas', ventasRoutes);
 app.use('/api/creditos', creditosRoutes);
 app.use('/api/reportes', reportesRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Respuesta para rutas de la API que no existen
 app.use('/api', (req, res) => {

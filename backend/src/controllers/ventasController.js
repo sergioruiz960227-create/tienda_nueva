@@ -207,4 +207,5 @@ async function anular(req, res) {
     }
 }
 
-module.exports = { crear, listar, resumen, obtener, anular };
+// SELECT_VENTAS también lo usa el Dashboard, para mostrar el estado de cada venta con la misma regla
+module.exports = { crear, listar, resumen, obtener, anular, SELECT_VENTAS };
